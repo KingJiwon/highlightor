@@ -2,5 +2,12 @@
   "extends": ["next/core-web-vitals", "airbnb-base", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

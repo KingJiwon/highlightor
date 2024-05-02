@@ -1,5 +1,6 @@
 import '../styles/reset.scss';
 import '../styles/globals.scss';
+import Header from '../containers/Header';
 
 export const metadata = {
   title: 'Create Next App',
@@ -9,7 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
