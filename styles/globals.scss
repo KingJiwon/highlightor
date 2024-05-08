@@ -1,1 +1,8 @@
-
+body {
+  display: flex;
+  justify-content: center;
+  .inner {
+    display: inline-block;
+    width: 70%;
+  }
+}

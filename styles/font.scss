@@ -1,3 +1,5 @@
+// font load
+
 @font-face {
   font-family: 'nexon-gothic';
   src: url('/fonts/NEXON Lv2 Gothic.ttf');
@@ -19,6 +21,14 @@
 }
 
 @font-face {
-  font-family: 'logo-font';
+  font-family: 'LeferiPointBlackOblique';
   src: url('/fonts/LeferiPointBlackOblique.ttf');
 }
+
+// font palette
+
+$logo-font: 'LeferiPointBlackOblique';
+$main-font: 'nexon-gothic';
+$main-font-medium: 'nexon-gothic-medium';
+$main-font-light: 'nexon-gothic-light';
+$main-font-bold: 'nexon-gothic-bold';

@@ -11,8 +11,7 @@
   "dependencies": {
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18",
-    "sass": "^1.75.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@eslint/js": "^9.1.1",
@@ -23,6 +22,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.1.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "sass": "^1.77.0"
   }
 }
