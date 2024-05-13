@@ -28,10 +28,11 @@
     margin: 10px 0;
     font-family: font.$main-font-medium;
     font-size: 17px;
+    color: #222323;
   }
   .nav_bar {
     margin-top: 20px;
-
+    width: 100%;
     border-top: 1px solid #dde1e5;
     border-bottom: 1px solid #dde1e5;
     ul {
@@ -47,6 +48,7 @@
         height: 30px;
         font-size: 15px;
         font-family: font.$main-font-bold;
+        color: #222323;
       }
       li:hover::after {
         content: '';
