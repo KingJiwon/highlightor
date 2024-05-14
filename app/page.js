@@ -62,9 +62,34 @@ export default function Home() {
             alt="오른쪽 화살표"
           />
         </div>
-        <div className={main.popular_highlight_btn_container}>
-          <div className={main.popular_highlight_btn}>
-            내 구단 하이라이트 만들기
+      </div>
+      <div className={main.create_highlight_btn_container}>
+        <div className={main.create_highlight_btn}>
+          내 구단 하이라이트 만들기
+        </div>
+      </div>
+      <div className={main.user_highlight}>
+        <div className={main.user_highlight_header}>
+          <p>MADDD님의 하이라이트</p>
+        </div>
+        <div className={main.user_highlight_teams}>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/arsenal.svg" />
+          </div>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/chelsea.svg" />
+          </div>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/liverpool.svg" />
+          </div>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/manchester_united.svg" />
+          </div>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/tottenham.svg" />
+          </div>
+          <div className={main.user_highlight_teams_logo}>
+            <img src="/icon/teams/arsenal.svg" />
           </div>
         </div>
       </div>

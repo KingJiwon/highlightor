@@ -9,7 +9,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    background-size: 600px;
+    background-size: 500px;
     background-image: url('/icon/normal/logo_fc.svg');
     background-repeat: no-repeat;
     opacity: 50%;
@@ -18,7 +18,7 @@
     position: relative;
     background-color: #f8f8f8;
     margin-top: 100px;
-
+    height: 500px;
     width: 100%;
 
     .popular_highlight_header {
@@ -72,7 +72,7 @@
         .popular_highlight_main_player_container {
           display: flex;
           align-items: center;
-          margin-bottom: 10px;
+          margin: 15px 0;
           .popular_highlight_main_player_position {
             font-family: font.$main-font-bold;
             font-size: 20px;
@@ -92,24 +92,69 @@
         height: 300px;
       }
     }
-    .popular_highlight_btn_container {
-      position: relative;
-      width: 100%;
+  }
+  .create_highlight_btn_container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .create_highlight_btn {
       display: flex;
       justify-content: center;
-      .popular_highlight_btn {
+      align-items: center;
+      margin-top: 70px;
+      width: 200px;
+      height: 50px;
+      font-family: font.$main-font-bold;
+      font-size: 16px;
+      background-color: #222323;
+      color: #04e45f;
+      border-radius: 15px;
+      border: 1px solid #04e45f;
+    }
+    .create_highlight_btn:hover {
+      cursor: pointer;
+      background-color: #04e45f;
+      color: #222323;
+      border-radius: 15px;
+    }
+  }
+  .user_highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    background-color: #f8f8f8;
+    .user_highlight_header {
+      width: 100%;
+      p {
+        margin-left: 20px;
+        font-size: 20px;
+        color: #04e45f;
+        font-family: font.$main-font-bold;
+      }
+    }
+    .user_highlight_teams {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 500px;
+      margin-top: 40px;
+      .user_highlight_teams_logo {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 70px;
-        width: 200px;
-        height: 50px;
-        font-family: font.$main-font-bold;
-        font-size: 16px;
+        width: 30%;
+        padding: 20px 0;
+        img {
+          width: 70px;
+          height: 70px;
+        }
+      }
+      .user_highlight_teams_logo:hover {
+        cursor: pointer;
         background-color: #222323;
-        color: #04e45f;
-        border-radius: 15px;
-        border: 1px solid #04e45f;
       }
     }
   }
