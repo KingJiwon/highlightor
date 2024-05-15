@@ -1,0 +1,28 @@
+@use './font.scss';
+
+.discriptor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .discriptor_logo {
+    font-size: 25px;
+    font-family: font.$logo-font;
+    margin-right: 20px;
+  }
+  .discriptor_ment {
+    font-size: 25px;
+    font-family: font.$main-font-bold;
+    color: #04e45f;
+  }
+}
+.selector_container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  img {
+    width: 34%;
+    height: 300px;
+  }
+}
