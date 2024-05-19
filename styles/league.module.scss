@@ -21,8 +21,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  img {
+  align-items: center;
+  div {
     width: 34%;
     height: 300px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  div:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 3px #04e45f inset;
+  }
+  .selector_pl,
+  .selector_ligue1,
+  .selector_laliga,
+  .selector_international {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 70%;
+      height: 70%;
+    }
   }
 }

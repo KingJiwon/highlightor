@@ -10,12 +10,24 @@ export default function page() {
         </p>
       </div>
       <div className={league.selector_container}>
-        <img src="/icon/league/premierleague.svg" />
-        <img src="/icon/league/laliga.svg" />
-        <img src="/icon/league/ligue1.svg" />
-        <img src="/icon/league/bundesliga.svg" />
-        <img src="/icon/league/serie_a.svg" />
-        <img src="/icon/league/international.svg" />
+        <div className={league.selector_pl}>
+          <img src="/icon/league/premierleague.svg" />
+        </div>
+        <div className={league.selector_laliga}>
+          <img src="/icon/league/laliga.svg" />
+        </div>
+        <div className={league.selector_ligue1}>
+          <img src="/icon/league/ligue1.svg" />
+        </div>
+        <div className={league.selector_bundes}>
+          <img src="/icon/league/bundesliga.svg" />
+        </div>
+        <div className={league.selector_serie}>
+          <img src="/icon/league/serie_a.svg" />
+        </div>
+        <div className={league.selector_international}>
+          <img src="/icon/league/international.svg" />
+        </div>
       </div>
     </>
   );
