@@ -22,7 +22,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  div {
+  a {
     width: 34%;
     height: 300px;
     img {
@@ -30,7 +30,7 @@
       height: 100%;
     }
   }
-  div:hover {
+  a:hover {
     cursor: pointer;
     box-shadow: 0 0 0 3px #04e45f inset;
   }

@@ -1,0 +1,55 @@
+@use './font.scss';
+
+.discriptor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .discriptor_logo {
+    font-size: 25px;
+    font-family: font.$logo-font;
+    margin-right: 20px;
+  }
+  .discriptor_ment {
+    font-size: 25px;
+    font-family: font.$main-font-bold;
+    color: #04e45f;
+  }
+}
+.team_container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 21%;
+    height: 250px;
+    border: 2px solid #dde1e5;
+    img {
+      margin-bottom: 20px;
+      width: 50%;
+      height: 50%;
+    }
+    .team_name {
+      font-family: font.$main-font-bold;
+      position: absolute;
+      bottom: 20px;
+      color: #222323;
+      font-size: 20px;
+      text-decoration: none;
+    }
+  }
+  a:hover {
+    background-color: #222323;
+    border: 2px solid #04e45f;
+    .team_name {
+      color: #ffffff;
+    }
+  }
+}

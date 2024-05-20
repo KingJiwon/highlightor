@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import league from '../../../styles/league.module.scss';
 
 export default function page() {
@@ -10,24 +11,39 @@ export default function page() {
         </p>
       </div>
       <div className={league.selector_container}>
-        <div className={league.selector_pl}>
+        <Link href={'/create_highlight/pl'} className={league.selector_pl}>
           <img src="/icon/league/premierleague.svg" />
-        </div>
-        <div className={league.selector_laliga}>
+        </Link>
+        <Link
+          href={'/create_highlight/laliga'}
+          className={league.selector_laliga}
+        >
           <img src="/icon/league/laliga.svg" />
-        </div>
-        <div className={league.selector_ligue1}>
+        </Link>
+        <Link
+          href={'/create_highlight/ligue1'}
+          className={league.selector_ligue1}
+        >
           <img src="/icon/league/ligue1.svg" />
-        </div>
-        <div className={league.selector_bundes}>
+        </Link>
+        <Link
+          href={'/create_highlight/bundes'}
+          className={league.selector_bundes}
+        >
           <img src="/icon/league/bundesliga.svg" />
-        </div>
-        <div className={league.selector_serie}>
+        </Link>
+        <Link
+          href={'/create_highlight/serie'}
+          className={league.selector_serie}
+        >
           <img src="/icon/league/serie_a.svg" />
-        </div>
-        <div className={league.selector_international}>
+        </Link>
+        <Link
+          href={'/create_highlight/international'}
+          className={league.selector_international}
+        >
           <img src="/icon/league/international.svg" />
-        </div>
+        </Link>
       </div>
     </>
   );
