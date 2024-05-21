@@ -64,13 +64,19 @@ export default function Home() {
           />
         </div>
       </div>
-      <Link href={'/create_highlight/league'}>
-        <div className={main.create_highlight_btn_container}>
-          <div className={main.create_highlight_btn}>
-            내 구단 하이라이트 만들기
-          </div>
-        </div>
-      </Link>
+
+      <div
+        href={'/create_highlight/league'}
+        className={main.create_highlight_btn_container}
+      >
+        <Link
+          href={'/create_highlight/league'}
+          className={main.create_highlight_btn}
+        >
+          내 구단 하이라이트 만들기
+        </Link>
+      </div>
+
       <div className={main.user_highlight}>
         <div className={main.user_highlight_header}>
           <p>MADDD님의 하이라이트</p>
