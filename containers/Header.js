@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import header from '../styles/header.module.scss';
 
 export default function Header() {
@@ -7,7 +8,9 @@ export default function Header() {
         <div className={header.login_btn}>로그인</div>
       </div>
       <div className={header.logo_container}>
-        <h1 className={header.logo}>HighLightor</h1>
+        <Link href={'/'} className={header.logo}>
+          HighLightor
+        </Link>
       </div>
       <div className={header.discriptor}>
         FC온라인 플레이 하이라이트를 생성하고 공유해보세요!
