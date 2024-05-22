@@ -1,0 +1,116 @@
+@use './font.scss';
+
+.discriptor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .discriptor_logo {
+    font-size: 25px;
+    font-family: font.$logo-font;
+    margin-right: 20px;
+  }
+  .discriptor_ment {
+    font-size: 25px;
+    font-family: font.$main-font-bold;
+    color: #04e45f;
+  }
+}
+.uploader_counter_container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .uploader_counter {
+    font-family: font.$main-font-bold;
+    font-size: 25px;
+  }
+}
+.uploader_main_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  padding: 30px 0px;
+  .uploader_btn_container {
+    font-family: font.$main-font-bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    margin-right: 30px;
+    .uploader_position_fw {
+      font-size: 25px;
+      color: red;
+      margin: 30px 0px;
+    }
+    .uploader_position_mf {
+      font-size: 25px;
+      color: green;
+      margin: 30px 0px;
+    }
+    .uploader_position_df {
+      font-size: 25px;
+      color: royalblue;
+      margin: 30px 0px;
+    }
+    .uploader_position_gk {
+      font-size: 25px;
+      color: gold;
+      margin: 30px 0px;
+    }
+    .uploader_btn_upload {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 50px;
+        border: 1px solid #04e45f;
+        border-radius: 30px;
+        background-color: #222323;
+        color: #04e45f;
+        font-size: 18px;
+        margin: 0px 7px;
+      }
+      p:hover {
+        cursor: pointer;
+        border: 1px solid #04e45f;
+        background-color: #04e45f;
+        color: #ffffff;
+      }
+    }
+  }
+  .uploader_player_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: 20px;
+
+    .uploader_player {
+      width: 25%;
+      margin: 0 10px;
+
+      img {
+        width: 100%;
+      }
+      p {
+        margin-top: 10px;
+        font-size: 14px;
+        font-family: font.$main-font-medium;
+      }
+    }
+  }
+  .uploader_highlight {
+    img {
+      height: 300px;
+    }
+  }
+}
