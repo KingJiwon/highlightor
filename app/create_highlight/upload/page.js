@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import upload from '../../../styles/upload.module.scss';
 
 export default function page() {
@@ -158,9 +159,12 @@ export default function page() {
             <img src="/images/test/test_img.jpg" alt="테스트 이미지" />
           </div>
         </div>
-        <div className={upload.uploader_create_btn_container}>
+        <Link
+          href={'/detail_highlight/1234'}
+          className={upload.uploader_create_btn_container}
+        >
           <p>하이라이트 생성</p>
-        </div>
+        </Link>
       </div>
     </>
   );
