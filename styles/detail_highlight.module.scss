@@ -36,4 +36,53 @@
       font-size: 15px;
     }
   }
+  .content_container {
+    margin-top: 50px;
+    .content_player_container {
+      display: flex;
+      flex-direction: column;
+      .content_player_position {
+        display: flex;
+        justify-content: center;
+        font-family: font.$main-font-bold;
+        font-size: 25px;
+        p:first-child {
+          color: #04e45f;
+        }
+        p {
+          margin: 0px 50px;
+        }
+      }
+      .content_player_list {
+        display: flex;
+        margin-top: 70px;
+        justify-content: center;
+        align-items: center;
+        .content_player {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0px 20px;
+          img {
+            height: 150px;
+            width: 150px;
+          }
+          p {
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: font.$main-font-medium;
+          }
+        }
+      }
+    }
+    .content_highlight_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      .content_highlight {
+        width: 800px;
+      }
+    }
+  }
 }
