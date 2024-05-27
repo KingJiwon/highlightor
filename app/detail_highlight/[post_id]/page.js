@@ -38,9 +38,17 @@ export default function page() {
           </div>
           <div className={detail.content_highlight_container}>
             <img
+              className={detail.content_highlight_before}
+              src="/icon/normal/left.svg"
+            />
+            <img
               className={detail.content_highlight}
               src="/images/test/test_img.jpg"
               alt="하이라이트 "
+            />
+            <img
+              className={detail.content_highlight_next}
+              src="/icon/normal/right.svg"
             />
           </div>
         </div>

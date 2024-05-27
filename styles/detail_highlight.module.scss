@@ -38,12 +38,28 @@
   }
   .content_container {
     margin-top: 50px;
+    .content_player_container::before {
+      position: absolute;
+      z-index: -1;
+      content: ' ';
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-size: 500px;
+      background-position: center;
+      background-image: url('/icon/teams/arsenal.svg');
+      background-repeat: no-repeat;
+      opacity: 40%;
+    }
     .content_player_container {
       display: flex;
       flex-direction: column;
+      position: relative;
       .content_player_position {
         display: flex;
         justify-content: center;
+
         font-family: font.$main-font-bold;
         font-size: 25px;
         p:first-child {
@@ -55,6 +71,7 @@
       }
       .content_player_list {
         display: flex;
+        height: 500px;
         margin-top: 70px;
         justify-content: center;
         align-items: center;
@@ -64,8 +81,8 @@
           align-items: center;
           margin: 0px 20px;
           img {
-            height: 150px;
-            width: 150px;
+            height: 130px;
+            width: 130px;
           }
           p {
             margin-top: 10px;
@@ -80,8 +97,17 @@
       justify-content: center;
       align-items: center;
       margin-top: 50px;
+      position: relative;
       .content_highlight {
         width: 800px;
+      }
+      .content_highlight_before {
+        position: absolute;
+        left: 40px;
+      }
+      .content_highlight_next {
+        position: absolute;
+        right: 40px;
       }
     }
   }
