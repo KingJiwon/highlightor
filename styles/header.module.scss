@@ -11,6 +11,24 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    .login_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #04e45f;
+      background-color: #222323;
+      width: 70px;
+      height: 30px;
+      font-family: font.$main-font-bold;
+      font-size: 15px;
+      border: 1px solid #04e45f;
+      border-radius: 15px;
+    }
+    .login_btn:hover {
+      background-color: #04e45f;
+      color: #222323;
+      cursor: pointer;
+    }
   }
   .logo_container {
     display: flex;

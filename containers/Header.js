@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className={header.container}>
       <div className={header.top_menu}>
-        <div className={header.login_btn}>로그인</div>
+        <p className={header.login_btn}>로그인</p>
       </div>
       <div className={header.logo_container}>
         <Link href={'/'} className={header.logo}>
