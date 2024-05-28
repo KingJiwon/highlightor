@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import main from '../styles/main.module.scss';
+import { connectDB } from '../util/database';
 
-export default function Home() {
+export default async function Home() {
+  const client = await connectDB;
+  const db = client.db('highlightor');
+  const result = await db.collection('board').find().toArray();
+  // eslint-disable-next-line no-console
+  console.log(result);
   return (
     <div className={main.main_container}>
       <div className={main.popular_highlight_container}>
