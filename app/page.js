@@ -1,6 +1,7 @@
+import { connectDB } from '@/util/database';
+
 import Link from 'next/link';
 import main from '../styles/main.module.scss';
-import { connectDB } from '../util/database';
 
 export default async function Home() {
   const client = await connectDB;
