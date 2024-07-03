@@ -1,4 +1,5 @@
-@use './font.scss';
+@use '../include';
+
 .main_container {
   .back_btn_container {
     margin-top: 50px;
@@ -6,7 +7,7 @@
     justify-content: flex-end;
     align-items: center;
     p {
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       font-size: 16px;
       margin-right: 5px;
       cursor: pointer;
@@ -21,7 +22,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    font-family: font.$main-font-bold;
+    font-family: include.$main-font-bold;
     img {
       width: 60px;
       height: 60px;
@@ -60,7 +61,7 @@
         display: flex;
         justify-content: center;
 
-        font-family: font.$main-font-bold;
+        font-family: include.$main-font-bold;
         font-size: 25px;
         p:first-child {
           color: #04e45f;
@@ -87,7 +88,7 @@
           p {
             margin-top: 10px;
             font-size: 14px;
-            font-family: font.$main-font-medium;
+            font-family: include.$main-font-medium;
           }
         }
       }

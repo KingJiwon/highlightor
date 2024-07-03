@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import upload from '../../../styles/upload.module.scss';
+import upload from '../../../styles/pages/upload.module.scss';
 
 export default function page() {
   return (

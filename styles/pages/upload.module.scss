@@ -1,4 +1,4 @@
-@use './font.scss';
+@use '../include';
 
 .discriptor {
   display: flex;
@@ -7,12 +7,12 @@
   margin-top: 50px;
   .discriptor_logo {
     font-size: 25px;
-    font-family: font.$logo-font;
+    font-family: include.$logo-font;
     margin-right: 20px;
   }
   .discriptor_ment {
     font-size: 25px;
-    font-family: font.$main-font-bold;
+    font-family: include.$main-font-bold;
     color: #04e45f;
   }
 }
@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     .uploader_counter {
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       font-size: 25px;
     }
   }
@@ -51,7 +51,7 @@
     width: 100%;
     padding: 30px 0px;
     .uploader_btn_container {
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -120,7 +120,7 @@
         p {
           margin-top: 10px;
           font-size: 14px;
-          font-family: font.$main-font-medium;
+          font-family: include.$main-font-medium;
         }
       }
     }
@@ -139,7 +139,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       width: 200px;
       height: 50px;
       background-color: #222323;

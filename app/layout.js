@@ -1,6 +1,5 @@
-import '../styles/reset.scss';
-import '../styles/globals.scss';
-import Header from '../containers/Header';
+import '../styles/styles.scss';
+import Header from '../components/Header';
 
 export const metadata = {
   title: 'Create Next App',

@@ -1,4 +1,4 @@
-@use './font.scss';
+@use '../include';
 
 .container {
   width: 100%;
@@ -19,7 +19,7 @@
       background-color: #222323;
       width: 70px;
       height: 30px;
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       font-size: 15px;
       border: 1px solid #04e45f;
       border-radius: 15px;
@@ -36,7 +36,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-family: font.$logo-font;
+    font-family: include.$logo-font;
     font-size: 70px;
     a {
       text-decoration: none;
@@ -48,7 +48,7 @@
     justify-content: center;
     width: 100%;
     margin: 10px 0;
-    font-family: font.$main-font-medium;
+    font-family: include.$main-font-medium;
     font-size: 17px;
     color: #222323;
   }
@@ -69,7 +69,7 @@
         width: 150px;
         height: 30px;
         font-size: 15px;
-        font-family: font.$main-font-bold;
+        font-family: include.$main-font-bold;
         color: #222323;
       }
       li:hover::after {

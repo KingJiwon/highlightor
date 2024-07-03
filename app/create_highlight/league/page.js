@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import league from '../../../styles/league.module.scss';
+import league from '../../../styles/pages/league.module.scss';
 
 export default function page() {
   return (

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import team from '../../../styles/team.module.scss';
+import team from '../../../styles/pages/team.module.scss';
 
 export default function page() {
   return (

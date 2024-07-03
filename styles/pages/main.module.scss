@@ -1,4 +1,4 @@
-@use './font.scss';
+@use '../include';
 
 .main_container {
   .popular_highlight_container::before {
@@ -35,11 +35,11 @@
       .popular_highlight_header_title {
         font-size: 20px;
         margin-right: 10px;
-        font-family: font.$main-font-bold;
+        font-family: include.$main-font-bold;
         color: #04e45f;
       }
       .popular_highlight_header_info {
-        font-family: font.$main-font-medium;
+        font-family: include.$main-font-medium;
         font-size: 12px;
         color: #222323;
       }
@@ -74,7 +74,7 @@
           align-items: center;
           margin: 15px 0;
           .popular_highlight_main_player_position {
-            font-family: font.$main-font-bold;
+            font-family: include.$main-font-bold;
             font-size: 20px;
           }
           .popular_highlight_main_player_img {
@@ -107,7 +107,7 @@
       top: 0;
       width: 200px;
       height: 50px;
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       font-size: 16px;
       background-color: #222323;
       color: #04e45f;
@@ -135,7 +135,7 @@
         margin-left: 20px;
         font-size: 20px;
         color: #04e45f;
-        font-family: font.$main-font-bold;
+        font-family: include.$main-font-bold;
       }
     }
     .user_highlight_teams {

@@ -1,4 +1,4 @@
-import detail from '../../../styles/detail_highlight.module.scss';
+import detail from '../../../styles/pages/detail_highlight.module.scss';
 
 export default function page() {
   return (

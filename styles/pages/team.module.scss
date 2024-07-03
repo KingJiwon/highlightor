@@ -1,5 +1,4 @@
-@use './font.scss';
-
+@use '../include';
 .discriptor {
   display: flex;
   justify-content: center;
@@ -7,12 +6,12 @@
   margin-top: 50px;
   .discriptor_logo {
     font-size: 25px;
-    font-family: font.$logo-font;
+    font-family: include.$logo-font;
     margin-right: 20px;
   }
   .discriptor_ment {
     font-size: 25px;
-    font-family: font.$main-font-bold;
+    font-family: include.$main-font-bold;
     color: #04e45f;
   }
 }
@@ -37,7 +36,7 @@
       height: 50%;
     }
     .team_name {
-      font-family: font.$main-font-bold;
+      font-family: include.$main-font-bold;
       position: absolute;
       bottom: 20px;
       color: #222323;
