@@ -1,23 +1,23 @@
 // font load
 
 @font-face {
-  font-family: 'nexon-gothic';
-  src: url('/fonts/NEXON Lv2 Gothic.ttf');
+  font-family: 'WantedSans';
+  src: url('/fonts/WantedSans-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'nexon-gothic-medium';
-  src: url('/fonts/NEXON Lv2 Gothic Medium.ttf');
+  font-family: 'WantedSans-medium';
+  src: url('/fonts/WantedSans-Medium.ttf');
 }
 
 @font-face {
-  font-family: 'nexon-gothic-bold';
-  src: url('/fonts/NEXON Lv2 Gothic Bold.ttf');
+  font-family: 'WantedSans-bold';
+  src: url('/fonts/WantedSans-Bold.ttf');
 }
 
 @font-face {
-  font-family: 'nexon-gothic-light';
-  src: url('/fonts/NEXON Lv2 Gothic Light.ttf');
+  font-family: 'WantedSans-semiBold';
+  src: url('/fonts/WantedSans-SemiBold.ttf');
 }
 
 @font-face {
@@ -28,7 +28,7 @@
 // font palette
 
 $logo-font: 'LeferiPointBlackOblique';
-$main-font: 'nexon-gothic';
-$main-font-medium: 'nexon-gothic-medium';
-$main-font-light: 'nexon-gothic-light';
-$main-font-bold: 'nexon-gothic-bold';
+$main-font: 'WantedSans';
+$main-font-medium: 'WantedSans-medium';
+$main-font-semiBold: 'WantedSans-semiBold';
+$main-font-bold: 'WantedSans-bold';
