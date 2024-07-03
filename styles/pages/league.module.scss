@@ -13,7 +13,7 @@
   .discriptor_ment {
     font-size: 25px;
     font-family: include.$main-font-bold;
-    color: #04e45f;
+    color: include.$main-color-green;
   }
 }
 .selector_container {
@@ -32,7 +32,7 @@
   }
   a:hover {
     cursor: pointer;
-    box-shadow: 0 0 0 3px #04e45f inset;
+    box-shadow: 0 0 0 3px include.$main-color-green inset;
   }
   .selector_pl,
   .selector_ligue1,

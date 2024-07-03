@@ -30,7 +30,7 @@
     }
     .title_name {
       font-size: 20px;
-      color: #04e45f;
+      color: include.$main-color-green;
       margin-right: 10px;
     }
     .title_info {
@@ -64,7 +64,7 @@
         font-family: include.$main-font-bold;
         font-size: 25px;
         p:first-child {
-          color: #04e45f;
+          color: include.$main-color-green;
         }
         p {
           margin: 0px 50px;

@@ -12,7 +12,7 @@
   .discriptor_ment {
     font-size: 25px;
     font-family: include.$main-font-bold;
-    color: #04e45f;
+    color: include.$main-color-green;
   }
 }
 .team_container {
@@ -29,7 +29,7 @@
     align-items: center;
     width: 21%;
     height: 250px;
-    border: 2px solid #dde1e5;
+    border: 2px solid include.$border-color-gray;
     img {
       margin-bottom: 20px;
       width: 50%;
@@ -45,8 +45,8 @@
     }
   }
   a:hover {
-    background-color: #222323;
-    border: 2px solid #04e45f;
+    background-color: include.$main-color-black;
+    border: 2px solid include.$main-color-green;
     .team_name {
       color: #ffffff;
     }

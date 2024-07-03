@@ -15,18 +15,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #04e45f;
-      background-color: #222323;
+      color: include.$main-color-green;
+      background-color: include.$main-color-black;
       width: 70px;
       height: 30px;
       font-family: include.$main-font-bold;
       font-size: 15px;
-      border: 1px solid #04e45f;
+      border: 1px solid include.$main-color-green;
       border-radius: 15px;
     }
     .login_btn:hover {
-      background-color: #04e45f;
-      color: #222323;
+      background-color: include.$main-color-green;
+      color: include.$main-color-black;
       cursor: pointer;
     }
   }
@@ -40,7 +40,7 @@
     font-size: 70px;
     a {
       text-decoration: none;
-      color: #222323;
+      color: include.$main-color-black;
     }
   }
   .discriptor {
@@ -50,13 +50,13 @@
     margin: 10px 0;
     font-family: include.$main-font-medium;
     font-size: 17px;
-    color: #222323;
+    color: include.$main-color-black;
   }
   .nav_bar {
     margin-top: 20px;
     width: 100%;
-    border-top: 1px solid #dde1e5;
-    border-bottom: 1px solid #dde1e5;
+    border-top: 1px solid include.$border-color-gray;
+    border-bottom: 1px solid include.$border-color-gray;
     ul {
       display: flex;
       justify-content: center;
@@ -70,19 +70,19 @@
         height: 30px;
         font-size: 15px;
         font-family: include.$main-font-bold;
-        color: #222323;
+        color: include.$main-color-black;
       }
       li:hover::after {
         content: '';
         position: absolute;
         bottom: -1px;
-        background-color: #04e45f;
+        background-color: include.$main-color-green;
         width: 80%;
         height: 4px;
       }
       li:hover {
         cursor: pointer;
-        color: #04e45f;
+        color: include.$main-color-green;
       }
     }
   }

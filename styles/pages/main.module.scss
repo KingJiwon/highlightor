@@ -16,7 +16,7 @@
   }
   .popular_highlight_container {
     position: relative;
-    background-color: #f8f8f8;
+    background-color: include.$bg-color-gray;
     margin-top: 100px;
     height: 500px;
     width: 100%;
@@ -36,12 +36,12 @@
         font-size: 20px;
         margin-right: 10px;
         font-family: include.$main-font-bold;
-        color: #04e45f;
+        color: include.$main-color-green;
       }
       .popular_highlight_header_info {
         font-family: include.$main-font-medium;
         font-size: 12px;
-        color: #222323;
+        color: include.$main-color-black;
       }
     }
     .popular_highlight_main {
@@ -109,15 +109,15 @@
       height: 50px;
       font-family: include.$main-font-bold;
       font-size: 16px;
-      background-color: #222323;
-      color: #04e45f;
+      background-color: include.$main-color-black;
+      color: include.$main-color-green;
       border-radius: 15px;
-      border: 1px solid #04e45f;
+      border: 1px solid include.$main-color-green;
       text-decoration: none;
     }
     .create_highlight_btn:hover {
       cursor: pointer;
-      background-color: #04e45f;
+      background-color: include.$main-color-green;
       color: #222323;
       border-radius: 15px;
     }
@@ -128,13 +128,13 @@
     align-items: center;
     margin-top: 50px;
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: include.$bg-color-gray;
     .user_highlight_header {
       width: 100%;
       p {
         margin-left: 20px;
         font-size: 20px;
-        color: #04e45f;
+        color: include.$main-color-green;
         font-family: include.$main-font-bold;
       }
     }
@@ -157,7 +157,7 @@
       }
       .user_highlight_teams_logo:hover {
         cursor: pointer;
-        background-color: #222323;
+        background-color: include.$main-color-black;
       }
     }
   }
