@@ -1,0 +1,11 @@
+@use '../../include';
+
+.login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: include.$bg-color-white;
+  width: 800px;
+  height: 600px;
+}
