@@ -1,54 +1,67 @@
 @use '../include';
-.discriptor {
+.discriptor_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  .discriptor_logo {
-    font-size: 25px;
-    font-family: include.$logo-font;
-    margin-right: 20px;
-  }
-  .discriptor_ment {
-    font-size: 25px;
-    font-family: include.$main-font-bold;
-    color: include.$main-color-green;
+  margin-top: 80px;
+  .discriptor_inner {
+    @include include.inner;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .discriptor_logo {
+      font-size: 25px;
+      font-family: include.$logo-font;
+      margin-right: 20px;
+    }
+    .discriptor_ment {
+      font-size: 25px;
+      font-family: include.$main-font-bold;
+      color: include.$main-color-green;
+    }
   }
 }
 .team_container {
   margin-top: 50px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  a {
-    position: relative;
+  .team_inner {
+    @include include.inner;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    width: 21%;
-    height: 250px;
-    border: 2px solid include.$border-color-gray;
-    img {
-      margin-bottom: 20px;
-      width: 50%;
-      height: 50%;
+
+    a {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 21%;
+      height: 250px;
+      border: 2px solid include.$border-color-gray;
+      img {
+        margin-bottom: 20px;
+        width: 50%;
+        height: 50%;
+      }
+      .team_name {
+        font-family: include.$main-font-bold;
+        position: absolute;
+        bottom: 20px;
+        color: #222323;
+        font-size: 20px;
+        text-decoration: none;
+      }
     }
-    .team_name {
-      font-family: include.$main-font-bold;
-      position: absolute;
-      bottom: 20px;
-      color: #222323;
-      font-size: 20px;
-      text-decoration: none;
-    }
-  }
-  a:hover {
-    background-color: include.$main-color-black;
-    border: 2px solid include.$main-color-green;
-    .team_name {
-      color: #ffffff;
+    a:hover {
+      background-color: include.$main-color-black;
+      border: 2px solid include.$main-color-green;
+      .team_name {
+        color: #ffffff;
+      }
     }
   }
 }

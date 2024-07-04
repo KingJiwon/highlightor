@@ -10,10 +10,8 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
-        <div className="inner">
-          <Header />
-          {children}
-        </div>
+        <Header />
+        {children}
       </body>
     </html>
   );

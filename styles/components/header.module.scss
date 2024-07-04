@@ -5,84 +5,90 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .top_menu {
-    width: 100%;
-    margin: 10px 0;
+  .inner {
+    @include include.inner;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     align-items: center;
-    .login_btn {
+    .top_menu {
+      width: 100%;
+      margin: 10px 0;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      color: include.$main-color-green;
-      background-color: include.$main-color-black;
-      width: 70px;
-      height: 30px;
-      font-family: include.$main-font-bold;
-      font-size: 15px;
-      border: 1px solid include.$main-color-green;
-      border-radius: 15px;
-    }
-    .login_btn:hover {
-      background-color: include.$main-color-green;
-      color: include.$main-color-black;
-      cursor: pointer;
-    }
-  }
-  .logo_container {
-    display: flex;
-    margin: 20px 0;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    font-family: include.$logo-font;
-    font-size: 70px;
-    a {
-      text-decoration: none;
-      color: include.$main-color-black;
-    }
-  }
-  .discriptor {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 10px 0;
-    font-family: include.$main-font-medium;
-    font-size: 17px;
-    color: include.$main-color-black;
-  }
-  .nav_bar {
-    margin-top: 20px;
-    width: 100%;
-    border-top: 1px solid include.$border-color-gray;
-    border-bottom: 1px solid include.$border-color-gray;
-    ul {
-      display: flex;
-      justify-content: center;
-      li {
-        position: relative;
+      .login_btn {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 0;
-        width: 150px;
+        color: include.$main-color-green;
+        background-color: include.$main-color-black;
+        width: 70px;
         height: 30px;
-        font-size: 15px;
         font-family: include.$main-font-bold;
+        font-size: 15px;
+        border: 1px solid include.$main-color-green;
+        border-radius: 15px;
+      }
+      .login_btn:hover {
+        background-color: include.$main-color-green;
+        color: include.$main-color-black;
+        cursor: pointer;
+      }
+    }
+    .logo_container {
+      display: flex;
+      margin: 20px 0;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-family: include.$logo-font;
+      font-size: 70px;
+      a {
+        text-decoration: none;
         color: include.$main-color-black;
       }
-      li:hover::after {
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        background-color: include.$main-color-green;
-        width: 80%;
-        height: 4px;
-      }
-      li:hover {
-        cursor: pointer;
-        color: include.$main-color-green;
+    }
+    .discriptor {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 10px 0;
+      font-family: include.$main-font-medium;
+      font-size: 17px;
+      color: include.$main-color-black;
+    }
+    .nav_bar {
+      margin-top: 20px;
+      width: 100%;
+      border-top: 1px solid include.$border-color-gray;
+      border-bottom: 1px solid include.$border-color-gray;
+      ul {
+        display: flex;
+        justify-content: center;
+        li {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px 0;
+          width: 150px;
+          height: 30px;
+          font-size: 15px;
+          font-family: include.$main-font-bold;
+          color: include.$main-color-black;
+        }
+        li:hover::after {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          background-color: include.$main-color-green;
+          width: 80%;
+          height: 4px;
+        }
+        li:hover {
+          cursor: pointer;
+          color: include.$main-color-green;
+        }
       }
     }
   }

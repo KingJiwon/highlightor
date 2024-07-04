@@ -1,49 +1,60 @@
 @use '../include';
 
-.discriptor {
+.discriptor_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  .discriptor_logo {
-    font-size: 25px;
-    font-family: include.$logo-font;
-    margin-right: 20px;
-  }
-  .discriptor_ment {
-    font-size: 25px;
-    font-family: include.$main-font-bold;
-    color: include.$main-color-green;
+  margin-top: 80px;
+  .discriptor_inner {
+    @include include.inner;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .discriptor_logo {
+      font-size: 25px;
+      font-family: include.$logo-font;
+      margin-right: 20px;
+    }
+    .discriptor_ment {
+      font-size: 25px;
+      font-family: include.$main-font-bold;
+      color: include.$main-color-green;
+    }
   }
 }
 .selector_container {
   margin-top: 50px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  a {
-    width: 34%;
-    height: 300px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  a:hover {
-    cursor: pointer;
-    box-shadow: 0 0 0 3px include.$main-color-green inset;
-  }
-  .selector_pl,
-  .selector_ligue1,
-  .selector_laliga,
-  .selector_international {
+  .selector_inner {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    img {
-      width: 70%;
-      height: 70%;
+    a {
+      width: 34%;
+      height: 300px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    a:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0 3px include.$main-color-green inset;
+    }
+    .selector_pl,
+    .selector_ligue1,
+    .selector_laliga,
+    .selector_international {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70%;
+        height: 70%;
+      }
     }
   }
 }
