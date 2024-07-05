@@ -6,13 +6,12 @@ export const metadata = {
   description: 'Fc온라인 하이라이트 저장소',
 };
 
-export default function RootLayout({ children, auth }) {
+export default function RootLayout({ children, modal }) {
   return (
     <html>
       <body>
-        {auth}
         <Header />
-        {children}
+        {children} {modal}
       </body>
     </html>
   );
