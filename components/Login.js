@@ -15,14 +15,12 @@ export default function Login() {
             type="password"
             placeholder="비밀번호"
           />
-          <input
-            className={login.login_form_submit}
-            type="submit"
-            value="로그인"
-          />
+          <button className={login.login_form_submit} type="submit">
+            로그인
+          </button>
         </form>
         <div className={login.login_menu}>
-          <Link href={'/'}>회원가입</Link>
+          <Link href={'/signup'}>회원가입</Link>
           <Link href={'/'}>ID찾기</Link>
           <Link href={'/'}>비밀번호 찾기</Link>
         </div>
