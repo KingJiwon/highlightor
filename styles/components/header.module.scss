@@ -41,9 +41,10 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      font-family: include.$logo-font;
+
       font-size: 70px;
       a {
+        font-family: include.$logo-font;
         text-decoration: none;
         color: include.$main-color-black;
       }
@@ -70,7 +71,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 15px 0;
+          margin: 15px 0;
           width: 150px;
           height: 30px;
           font-size: 15px;
@@ -80,7 +81,7 @@
         li:hover::after {
           content: '';
           position: absolute;
-          bottom: -1px;
+          bottom: -16px;
           background-color: include.$main-color-green;
           width: 80%;
           height: 4px;

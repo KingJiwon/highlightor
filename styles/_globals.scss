@@ -1,9 +1,11 @@
+@use 'font';
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .inner {
-    display: inline-block;
-    width: 1280px;
+
+  * {
+    box-sizing: border-box;
+    font-family: font.$main-font-medium;
   }
 }

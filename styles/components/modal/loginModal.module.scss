@@ -3,9 +3,98 @@
 .login_container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: fixed;
   background-color: include.$bg-color-white;
   width: 800px;
-  height: 600px;
+  .login_inner {
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .login_header {
+      margin-top: 30px;
+      font-size: 25px;
+      font-family: include.$logo-font;
+      color: include.$main-color-black;
+    }
+    .login_form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+      width: 100%;
+      input {
+        width: 100%;
+        height: 60px;
+      }
+      .login_form_id,
+      .login_form_pw {
+        background-color: include.$bg-color-white;
+        padding: 18px 12px;
+        font-size: 16px;
+        border: 1px solid include.$border-color-gray;
+      }
+      .login_form_pw {
+        margin-top: 12px;
+      }
+      .login_form_id::placeholder,
+      .login_form_pw::placeholder {
+        color: include.$border-color-gray;
+      }
+
+      .login_form_id:focus,
+      .login_form_pw:focus {
+        outline: none;
+        border: 2px solid include.$main-color-green;
+      }
+
+      .login_form_submit {
+        font-size: 20px;
+        font-family: include.$main-font-bold;
+        margin-top: 40px;
+        background-color: include.$main-color-black;
+        color: include.$bg-color-white;
+        cursor: pointer;
+        transition: all 0.15s linear;
+        border: none;
+      }
+      .login_form_submit:hover {
+        background-color: include.$main-color-green;
+      }
+    }
+    .login_menu {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      a {
+        font-family: include.$main-font-bold;
+        color: #737881;
+        margin-right: 5px;
+        font-size: 12px;
+      }
+      a:hover {
+        color: include.$main-color-green;
+        transition: all 0.15s linear;
+      }
+    }
+    .login_other {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .login_others {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        margin-top: 10px;
+        padding-left: 8px;
+        color: include.$main-color-black;
+        border: 1px solid include.$border-color-gray;
+      }
+      .login_others:hover {
+        cursor: pointer;
+        background-color: include.$bg-color-gray;
+      }
+    }
+  }
 }
