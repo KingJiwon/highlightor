@@ -15,7 +15,7 @@ export default function Login() {
           </Link>
           <button
             onClick={() => {
-              router.back();
+              router.push('/');
             }}
             type="button"
             className={login.login_header_exit}
@@ -23,7 +23,11 @@ export default function Login() {
         </div>
 
         <form className={login.login_form}>
-          <input className={login.login_form_id} type="text" placeholder="ID" />
+          <input
+            className={login.login_form_id}
+            type="email"
+            placeholder="E-mail"
+          />
           <input
             className={login.login_form_pw}
             type="password"

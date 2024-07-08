@@ -10,7 +10,7 @@ export default function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const info = {
-      id: event.target.id.value,
+      email: event.target.email.value,
       password: event.target.password.value,
     };
     const res = await generalLogin(info);
@@ -45,9 +45,9 @@ export default function Signup() {
         <form onSubmit={(e) => handleSubmit(e)} className={signup.signup_form}>
           <input
             className={signup.signup_form_id}
-            name="id"
-            type="text"
-            placeholder="ID"
+            name="email"
+            type="email"
+            placeholder="Email"
           />
 
           <input
