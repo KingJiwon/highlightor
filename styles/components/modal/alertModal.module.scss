@@ -1,0 +1,25 @@
+@use '../../include';
+
+.alert_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: include.$bg-color-white;
+  width: 300px;
+  .alert_logo {
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: include.$logo-font;
+    color: include.$main-color-black;
+  }
+  .alert_text {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .alert_button {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+}
