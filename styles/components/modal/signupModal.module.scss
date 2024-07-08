@@ -11,10 +11,35 @@
     flex-direction: column;
     align-items: center;
     .signup_header {
+      position: relative;
+      width: 100%;
       margin-top: 30px;
-      font-size: 30px;
-      font-family: include.$logo-font;
-      color: include.$main-color-black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .signup_header_logo {
+        font-family: include.$logo-font;
+        color: include.$main-color-black;
+        font-size: 30px;
+      }
+      button {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+      }
+      .signup_header_back {
+        left: 0;
+        background-image: url('/icon/normal/Chevron_left.svg');
+        background-size: contain;
+      }
+      .signup_header_exit {
+        right: 0;
+        background-image: url('/icon/normal/X.svg');
+        background-size: contain;
+      }
     }
     .signup_form {
       display: flex;
@@ -57,6 +82,7 @@
         cursor: pointer;
         transition: all 0.15s linear;
         border: none;
+        margin-bottom: 30px;
       }
       .signup_form_submit:hover {
         background-color: include.$main-color-green;

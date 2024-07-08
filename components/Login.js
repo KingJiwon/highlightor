@@ -1,13 +1,27 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import login from '../styles/components/modal/loginModal.module.scss';
 
 export default function Login() {
+  const router = useRouter();
   return (
     <div className={login.login_container}>
       <div className={login.login_inner}>
-        <Link href={'/'} className={login.login_header}>
-          HighLightor
-        </Link>
+        <div className={login.login_header}>
+          <Link className={login.login_header_logo} href={'/'}>
+            HighLightor
+          </Link>
+          <button
+            onClick={() => {
+              router.back();
+            }}
+            type="button"
+            className={login.login_header_exit}
+          />
+        </div>
+
         <form className={login.login_form}>
           <input className={login.login_form_id} type="text" placeholder="ID" />
           <input

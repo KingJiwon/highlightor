@@ -15,7 +15,7 @@ export default async function signup(req, res) {
       const hash = await bcrypt.hash(req.body.password, 10);
       req.body.password = hash;
       await db.collection('user_cred').insertOne(req.body);
-      res.status(200).send('가입완료');
+      res.status(200).send('가입이 완료되었습니다!');
     } catch (err) {
       console.error(err);
       res.status(500).send('서버 에러');

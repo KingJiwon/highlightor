@@ -11,10 +11,28 @@
     flex-direction: column;
     align-items: center;
     .login_header {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-top: 30px;
-      font-size: 30px;
-      font-family: include.$logo-font;
-      color: include.$main-color-black;
+      .login_header_logo {
+        font-size: 30px;
+        font-family: include.$logo-font;
+        color: include.$main-color-black;
+      }
+      .login_header_exit {
+        position: absolute;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        background-image: url('/icon/normal/X.svg');
+        background-size: contain;
+        background-color: inherit;
+        border: none;
+        cursor: pointer;
+      }
     }
     .login_form {
       display: flex;
@@ -82,6 +100,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      margin-bottom: 30px;
       .login_others {
         display: flex;
         align-items: center;
