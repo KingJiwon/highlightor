@@ -1,19 +1,31 @@
 'use client';
 
-import generalLogin from '@/app/apis/user';
-import { emailValidation, passwordValidation } from '@/util/validation';
 import signup from '@/styles/components/modal/signupModal.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
+import generalLogin from '@/app/apis/user';
+import { emailValidation, passwordValidation } from '@/util/validation';
+import {
+  NOT_VALID_EMAIL,
+  NOT_VALID_PASSWORD,
+  VALID_EMAIL,
+  VALID_PASSWORD,
+} from '@/util/variable';
 
 export default function Signup() {
   const router = useRouter();
-  const [validatedEmail, setValidatedEmail] = useState(false);
-  const [validatedPassword, setValidatedPassword] = useState(false);
+
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [emailCaptionText, setEmailCaptionText] = useState(NOT_VALID_EMAIL);
+  const [passwordCaptionText, setPasswordCaptionText] =
+    useState(NOT_VALID_PASSWORD);
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const emailCaptionRef = useRef();
+  const passwordCaptionRef = useRef();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,19 +40,27 @@ export default function Signup() {
   const onChangeEmail = () => {
     if (emailValidation(emailInputRef.current.value)) {
       emailInputRef.current.style.borderColor = '#04e45f';
-      setValidatedEmail(true);
+      emailCaptionRef.current.style.color = '#04e45f';
+      setEmailCaptionText(VALID_EMAIL);
+      setIsValidEmail(true);
     } else {
       emailInputRef.current.style.borderColor = 'tomato';
-      setValidatedEmail(false);
+      emailCaptionRef.current.style.color = 'tomato';
+      setEmailCaptionText(NOT_VALID_EMAIL);
+      setIsValidEmail(false);
     }
   };
   const onChangePassword = () => {
     if (passwordValidation(passwordInputRef.current.value)) {
       passwordInputRef.current.style.borderColor = '#04e45f';
-      setValidatedPassword(true);
+      passwordCaptionRef.current.style.color = '#04e45f';
+      setPasswordCaptionText(VALID_PASSWORD);
+      setIsValidPassword(true);
     } else {
       passwordInputRef.current.style.borderColor = 'tomato';
-      setValidatedPassword(false);
+      passwordCaptionRef.current.style.color = 'tomato';
+      setPasswordCaptionText(NOT_VALID_PASSWORD);
+      setIsValidPassword(false);
     }
   };
 
@@ -75,6 +95,9 @@ export default function Signup() {
             type="text"
             placeholder="Email"
           />
+          <p className={signup.signup_form_id_caption} ref={emailCaptionRef}>
+            {emailCaptionText}
+          </p>
 
           <input
             ref={passwordInputRef}
@@ -84,7 +107,10 @@ export default function Signup() {
             type="password"
             placeholder="비밀번호"
           />
-          {validatedEmail && validatedPassword ? (
+          <p className={signup.signup_form_id_caption} ref={passwordCaptionRef}>
+            {passwordCaptionText}
+          </p>
+          {isValidEmail && isValidPassword ? (
             <button className={signup.signup_form_submit_active} type="submit">
               회원가입
             </button>

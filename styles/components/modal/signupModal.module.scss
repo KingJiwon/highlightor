@@ -55,15 +55,21 @@
         background-color: include.$bg-color-white;
         padding: 18px 12px;
         font-size: 16px;
-        border: 1px solid include.$border-color-gray;
+        border: 1px solid tomato;
         outline: none;
       }
       .signup_form_pw {
-        margin-top: 12px;
+        margin-top: 25px;
       }
       .signup_form_id::placeholder,
       .signup_form_pw::placeholder {
         color: include.$border-color-gray;
+      }
+
+      .signup_form_id_caption {
+        margin-top: 5px;
+        font-size: 14px;
+        color: tomato;
       }
 
       .signup_form_id:focus,
