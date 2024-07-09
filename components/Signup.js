@@ -7,10 +7,12 @@ import { useRef, useState } from 'react';
 import generalLogin from '@/app/apis/user';
 import { emailValidation, passwordValidation } from '@/util/validation';
 import {
-  NOT_VALID_EMAIL,
-  NOT_VALID_PASSWORD,
+  INVALID_EMAIL,
+  INVALID_PASSWORD,
+  INVALID_PASSWORDCHECK,
   VALID_EMAIL,
   VALID_PASSWORD,
+  VALID_PASSWORDCHECK,
 } from '@/util/variable';
 
 export default function Signup() {
@@ -18,14 +20,19 @@ export default function Signup() {
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
-  const [emailCaptionText, setEmailCaptionText] = useState(NOT_VALID_EMAIL);
-  const [passwordCaptionText, setPasswordCaptionText] =
-    useState(NOT_VALID_PASSWORD);
+  const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(false);
+  const [emailCaption, setEmailCaption] = useState(INVALID_EMAIL);
+  const [passwordCaption, setPasswordCaption] = useState(INVALID_PASSWORD);
+  const [passwordCheckCaption, setPasswordCheckCaption] = useState(
+    INVALID_PASSWORDCHECK,
+  );
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const emailCaptionRef = useRef();
   const passwordCaptionRef = useRef();
+  const passwordCheckRef = useRef();
+  const passwordCheckCaptionRef = useRef();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,29 +44,44 @@ export default function Signup() {
     router.push(`/alert/?status=${res.status}&message=${res.data}`, '/alert');
     return res;
   };
+  // 회원가입 클라이언트 유효성 검사
   const onChangeEmail = () => {
     if (emailValidation(emailInputRef.current.value)) {
       emailInputRef.current.style.borderColor = '#04e45f';
       emailCaptionRef.current.style.color = '#04e45f';
-      setEmailCaptionText(VALID_EMAIL);
+      setEmailCaption(VALID_EMAIL);
       setIsValidEmail(true);
     } else {
       emailInputRef.current.style.borderColor = 'tomato';
       emailCaptionRef.current.style.color = 'tomato';
-      setEmailCaptionText(NOT_VALID_EMAIL);
+      setEmailCaption(INVALID_EMAIL);
       setIsValidEmail(false);
     }
   };
+  const onChangePasswordCheck = () => {
+    if (passwordInputRef.current.value === passwordCheckRef.current.value) {
+      passwordCheckRef.current.style.borderColor = '#04e45f';
+      passwordCheckCaptionRef.current.style.color = '#04e45f';
+      setPasswordCheckCaption(VALID_PASSWORDCHECK);
+      setIsValidPasswordCheck(true);
+    } else {
+      passwordCheckRef.current.style.borderColor = 'tomato';
+      passwordCheckCaptionRef.current.style.color = 'tomato';
+      setPasswordCheckCaption(INVALID_PASSWORDCHECK);
+      setIsValidPasswordCheck(false);
+    }
+  };
   const onChangePassword = () => {
+    onChangePasswordCheck();
     if (passwordValidation(passwordInputRef.current.value)) {
       passwordInputRef.current.style.borderColor = '#04e45f';
       passwordCaptionRef.current.style.color = '#04e45f';
-      setPasswordCaptionText(VALID_PASSWORD);
+      setPasswordCaption(VALID_PASSWORD);
       setIsValidPassword(true);
     } else {
       passwordInputRef.current.style.borderColor = 'tomato';
       passwordCaptionRef.current.style.color = 'tomato';
-      setPasswordCaptionText(NOT_VALID_PASSWORD);
+      setPasswordCaption(INVALID_PASSWORD);
       setIsValidPassword(false);
     }
   };
@@ -95,8 +117,8 @@ export default function Signup() {
             type="text"
             placeholder="Email"
           />
-          <p className={signup.signup_form_id_caption} ref={emailCaptionRef}>
-            {emailCaptionText}
+          <p className={signup.signup_form_caption} ref={emailCaptionRef}>
+            {emailCaption}
           </p>
 
           <input
@@ -107,10 +129,25 @@ export default function Signup() {
             type="password"
             placeholder="비밀번호"
           />
-          <p className={signup.signup_form_id_caption} ref={passwordCaptionRef}>
-            {passwordCaptionText}
+          <p className={signup.signup_form_caption} ref={passwordCaptionRef}>
+            {passwordCaption}
           </p>
-          {isValidEmail && isValidPassword ? (
+
+          <input
+            ref={passwordCheckRef}
+            onChange={() => onChangePasswordCheck()}
+            className={signup.signup_form_pw_check}
+            name="passwordCheck"
+            type="password"
+            placeholder="비밀번호 확인"
+          />
+          <p
+            className={signup.signup_form_caption}
+            ref={passwordCheckCaptionRef}
+          >
+            {passwordCheckCaption}
+          </p>
+          {isValidEmail && isValidPassword && isValidPasswordCheck ? (
             <button className={signup.signup_form_submit_active} type="submit">
               회원가입
             </button>

@@ -51,29 +51,33 @@
         height: 60px;
       }
       .signup_form_id,
-      .signup_form_pw {
+      .signup_form_pw,
+      .signup_form_pw_check {
         background-color: include.$bg-color-white;
         padding: 18px 12px;
         font-size: 16px;
         border: 1px solid tomato;
         outline: none;
       }
-      .signup_form_pw {
+      .signup_form_pw,
+      .signup_form_pw_check {
         margin-top: 25px;
       }
       .signup_form_id::placeholder,
-      .signup_form_pw::placeholder {
+      .signup_form_pw::placeholder,
+      .signup_form_pw_check::placeholder {
         color: include.$border-color-gray;
       }
 
-      .signup_form_id_caption {
+      .signup_form_caption {
         margin-top: 5px;
         font-size: 14px;
         color: tomato;
       }
 
       .signup_form_id:focus,
-      .signup_form_pw:focus {
+      .signup_form_pw:focus,
+      .signup_form_pw_check:focus {
         border-width: 2px;
       }
 
