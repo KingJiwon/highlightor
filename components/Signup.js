@@ -3,7 +3,7 @@
 import signup from '@/styles/components/modal/signupModal.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import generalLogin from '@/app/apis/user';
 import { emailValidation, passwordValidation } from '@/util/validation';
 import {
@@ -18,72 +18,68 @@ import {
 export default function Signup() {
   const router = useRouter();
 
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
-  const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(false);
-  const [emailCaption, setEmailCaption] = useState(INVALID_EMAIL);
-  const [passwordCaption, setPasswordCaption] = useState(INVALID_PASSWORD);
-  const [passwordCheckCaption, setPasswordCheckCaption] = useState(
-    INVALID_PASSWORDCHECK,
-  );
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+    passwordCheck: '',
+  });
 
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const emailCaptionRef = useRef();
-  const passwordCaptionRef = useRef();
-  const passwordCheckRef = useRef();
-  const passwordCheckCaptionRef = useRef();
+  const [validationState, setValidationState] = useState({
+    isValidEmail: false,
+    isValidPassword: false,
+    isValidPasswordCheck: false,
+    emailCaption: INVALID_EMAIL,
+    passwordCaption: INVALID_PASSWORD,
+    passwordCheckCaption: INVALID_PASSWORDCHECK,
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const info = {
-      email: event.target.email.value,
-      password: event.target.password.value,
-    };
-    const res = await generalLogin(info); // 409도 200도 아닐때 에러 페이지
+    const info = { email: formState.email, password: formState.password };
+    const res = await generalLogin(info);
     router.push(`/alert/?status=${res.status}&message=${res.data}`, '/alert');
-    return res;
   };
-  // 회원가입 클라이언트 유효성 검사
-  const onChangeEmail = () => {
-    if (emailValidation(emailInputRef.current.value)) {
-      emailInputRef.current.style.borderColor = '#04e45f';
-      emailCaptionRef.current.style.color = '#04e45f';
-      setEmailCaption(VALID_EMAIL);
-      setIsValidEmail(true);
-    } else {
-      emailInputRef.current.style.borderColor = 'tomato';
-      emailCaptionRef.current.style.color = 'tomato';
-      setEmailCaption(INVALID_EMAIL);
-      setIsValidEmail(false);
-    }
+
+  const validateEmail = (email) => {
+    const isValid = emailValidation(email);
+    setValidationState((prevState) => ({
+      ...prevState,
+      isValidEmail: isValid,
+      emailCaption: isValid ? VALID_EMAIL : INVALID_EMAIL,
+    }));
   };
-  const onChangePasswordCheck = () => {
-    if (passwordInputRef.current.value === passwordCheckRef.current.value) {
-      passwordCheckRef.current.style.borderColor = '#04e45f';
-      passwordCheckCaptionRef.current.style.color = '#04e45f';
-      setPasswordCheckCaption(VALID_PASSWORDCHECK);
-      setIsValidPasswordCheck(true);
-    } else {
-      passwordCheckRef.current.style.borderColor = 'tomato';
-      passwordCheckCaptionRef.current.style.color = 'tomato';
-      setPasswordCheckCaption(INVALID_PASSWORDCHECK);
-      setIsValidPasswordCheck(false);
-    }
+
+  const validatePasswordCheck = (
+    passwordCheck,
+    password = formState.password,
+  ) => {
+    const isValid = passwordCheck === password;
+    setValidationState((prevState) => ({
+      ...prevState,
+      isValidPasswordCheck: isValid,
+      passwordCheckCaption: isValid
+        ? VALID_PASSWORDCHECK
+        : INVALID_PASSWORDCHECK,
+    }));
   };
-  const onChangePassword = () => {
-    onChangePasswordCheck();
-    if (passwordValidation(passwordInputRef.current.value)) {
-      passwordInputRef.current.style.borderColor = '#04e45f';
-      passwordCaptionRef.current.style.color = '#04e45f';
-      setPasswordCaption(VALID_PASSWORD);
-      setIsValidPassword(true);
-    } else {
-      passwordInputRef.current.style.borderColor = 'tomato';
-      passwordCaptionRef.current.style.color = 'tomato';
-      setPasswordCaption(INVALID_PASSWORD);
-      setIsValidPassword(false);
-    }
+
+  const validatePassword = (password) => {
+    const isValid = passwordValidation(password);
+    setValidationState((prevState) => ({
+      ...prevState,
+      isValidPassword: isValid,
+      passwordCaption: isValid ? VALID_PASSWORD : INVALID_PASSWORD,
+    }));
+    validatePasswordCheck(formState.passwordCheck, password);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
+
+    if (name === 'email') validateEmail(value);
+    if (name === 'password') validatePassword(value);
+    if (name === 'passwordCheck') validatePasswordCheck(value);
   };
 
   return (
@@ -91,9 +87,7 @@ export default function Signup() {
       <div className={signup.signup_inner}>
         <div className={signup.signup_header}>
           <button
-            onClick={() => {
-              router.back();
-            }}
+            onClick={() => router.back()}
             type="button"
             className={signup.signup_header_back}
           />
@@ -101,53 +95,81 @@ export default function Signup() {
             HighLightor
           </Link>
           <button
-            onClick={() => {
-              router.push('/');
-            }}
+            onClick={() => router.push('/')}
             type="button"
             className={signup.signup_header_exit}
           />
         </div>
-        <form onSubmit={(e) => handleSubmit(e)} className={signup.signup_form}>
+        <form onSubmit={handleSubmit} className={signup.signup_form}>
           <input
-            ref={emailInputRef}
-            onChange={() => onChangeEmail()}
+            value={formState.email}
+            onChange={handleChange}
             className={signup.signup_form_id}
             name="email"
             type="text"
             placeholder="Email"
+            style={{
+              borderColor: validationState.isValidEmail ? '#04e45f' : 'tomato',
+            }}
           />
-          <p className={signup.signup_form_caption} ref={emailCaptionRef}>
-            {emailCaption}
+          <p
+            className={signup.signup_form_caption}
+            style={{
+              color: validationState.isValidEmail ? '#04e45f' : 'tomato',
+            }}
+          >
+            {validationState.emailCaption}
           </p>
 
           <input
-            ref={passwordInputRef}
-            onChange={() => onChangePassword()}
+            value={formState.password}
+            onChange={handleChange}
             className={signup.signup_form_pw}
             name="password"
             type="password"
             placeholder="비밀번호"
+            style={{
+              borderColor: validationState.isValidPassword
+                ? '#04e45f'
+                : 'tomato',
+            }}
           />
-          <p className={signup.signup_form_caption} ref={passwordCaptionRef}>
-            {passwordCaption}
+          <p
+            className={signup.signup_form_caption}
+            style={{
+              color: validationState.isValidPassword ? '#04e45f' : 'tomato',
+            }}
+          >
+            {validationState.passwordCaption}
           </p>
 
           <input
-            ref={passwordCheckRef}
-            onChange={() => onChangePasswordCheck()}
+            value={formState.passwordCheck}
+            onChange={handleChange}
             className={signup.signup_form_pw_check}
             name="passwordCheck"
             type="password"
             placeholder="비밀번호 확인"
+            style={{
+              borderColor: validationState.isValidPasswordCheck
+                ? '#04e45f'
+                : 'tomato',
+            }}
           />
           <p
             className={signup.signup_form_caption}
-            ref={passwordCheckCaptionRef}
+            style={{
+              color: validationState.isValidPasswordCheck
+                ? '#04e45f'
+                : 'tomato',
+            }}
           >
-            {passwordCheckCaption}
+            {validationState.passwordCheckCaption}
           </p>
-          {isValidEmail && isValidPassword && isValidPasswordCheck ? (
+
+          {validationState.isValidEmail &&
+          validationState.isValidPassword &&
+          validationState.isValidPasswordCheck ? (
             <button className={signup.signup_form_submit_active} type="submit">
               회원가입
             </button>
