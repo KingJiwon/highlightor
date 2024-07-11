@@ -6,7 +6,7 @@ export const authOptions = {
   providers: [
     GithubProvider({
       clientId: 'ca2f15076eb2f947c606',
-      clientSecret: 'a855607b154f72a5d5dabc1a2bbf3f3899ddf8bd',
+      clientSecret: process.env.GITHUB_SECRET,
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -56,20 +56,23 @@ export const authOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
-        token.user = {
-          name: user.name,
-          email: user.email,
+        return {
+          ...token,
+          user: {
+            name: user.name,
+            email: user.email,
+          },
         };
       }
       return token;
     },
     session: async ({ session, token }) => {
       if (token?.user) {
-        session.user = token.user;
+        return { ...session, user: token.user };
       }
       return session;
     },
   },
-  secret: 'wldnjsisking123',
+  secret: process.env.JWT_SECRET,
 };
 export default NextAuth(authOptions);
