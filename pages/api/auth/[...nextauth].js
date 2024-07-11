@@ -15,10 +15,9 @@ export const authOptions = {
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
-        console.log(credentials);
         try {
           const res = await fetch(
-            `${process.env.NEXTAUTH_URL}/api/auth/login`, // 왜?왜?왜?
+            `${process.env.NEXTAUTH_URL}/api/auth/login`,
             {
               method: 'POST',
               headers: {
@@ -32,18 +31,17 @@ export const authOptions = {
           );
 
           if (!res.ok) {
-            throw new Error('Failed to login');
+            const errorData = await res.json();
+            throw new Error(errorData.error || '로그인에 실패했습니다.');
           }
-
           const user = await res.json();
-
           if (user) {
             return user;
           }
           return null;
         } catch (error) {
-          console.error('Authorize error:', error);
-          return null;
+          console.error('Authorize error:', error.message);
+          throw new Error(error.message || '로그인에 실패했습니다.');
         }
       },
     }),

@@ -30,7 +30,7 @@ export default function Login() {
       redirect: false,
     });
 
-    if (result.error) {
+    if (result?.error) {
       setError(result.error);
     } else {
       router.push('/');
@@ -54,35 +54,32 @@ export default function Login() {
         </div>
 
         <form onSubmit={(e) => handleSubmit(e)} className={login.login_form}>
-          <label for="email">
-            email
-            <input
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              className={login.login_form_id}
-              type="text"
-              name="email"
-              placeholder="E-mail"
-            />
-          </label>
-          <label for="password">
-            password
-            <input
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              className={login.login_form_pw}
-              type="password"
-              name="password"
-              placeholder="비밀번호"
-            />
-          </label>
+          {error && <p className={login.login_form_error}>{error}</p>}
+          <input
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            className={login.login_form_id}
+            type="text"
+            name="email"
+            placeholder="E-mail"
+          />
+
+          <input
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            className={login.login_form_pw}
+            type="password"
+            name="password"
+            placeholder="비밀번호"
+          />
 
           <button className={login.login_form_submit} type="submit">
             로그인
           </button>
         </form>
+
         <div className={login.login_menu}>
           <Link href={'/signup'}>회원가입</Link>
           <Link href={'/'}>ID찾기</Link>

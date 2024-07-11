@@ -9,20 +9,21 @@ export default async function login(req, res) {
     try {
       const user = await db.collection('user_cred').findOne({ email });
       if (!user) {
-        return res.status(401).send('해당 아이디가 존재하지 않음');
+        return res.status(401).json({ error: '등록되지 않은 이메일입니다.' });
       }
 
       const passwordCheck = await bcrypt.compare(password, user.password);
       if (!passwordCheck) {
-        return res.status(401).send('비밀번호 틀림');
+        return res
+          .status(401)
+          .json({ error: '비밀번호를 잘못 입력하셨습니다.' });
       }
 
       return res.status(200).json(user);
     } catch (err) {
-      console.error(err);
-      return res.status(500).send('서버 에러');
+      return res.status(500).json({ error: '서버 에러' });
     }
   } else {
-    return res.status(405).send('허용되지 않는 메소드');
+    return res.status(405).json({ error: '허용되지 않는 메소드' });
   }
 }
