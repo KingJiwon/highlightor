@@ -43,23 +43,6 @@ export default function Signup() {
     passwordCheckCaption: INVALID_PASSWORDCHECK,
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const info = {
-      nickname: formState.nickname,
-      email: formState.email,
-      password: formState.password,
-    };
-    const res = await generalLogin(info);
-
-    if (res.data.err) return setError(res.data.err);
-    // error 없으면 모달로 push
-    return router.push(
-      `/alert/?status=${res.status}&message=${res.data}`,
-      '/alert',
-    );
-  };
-
   const validateNickname = (nickname) => {
     const isValid = nicknameValidation(nickname);
     setValidationState((prevState) => ({
@@ -110,6 +93,23 @@ export default function Signup() {
     if (name === 'email') validateEmail(value);
     if (name === 'password') validatePassword(value);
     if (name === 'passwordCheck') validatePasswordCheck(value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const info = {
+      nickname: formState.nickname,
+      email: formState.email,
+      password: formState.password,
+    };
+    const res = await generalLogin(info);
+
+    if (res.data.err) return setError(res.data.err);
+    // error 없으면 모달로 push
+    return router.push(
+      `/alert/?status=${res.status}&message=${res.data}`,
+      '/alert',
+    );
   };
 
   return (
