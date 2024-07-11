@@ -11,6 +11,7 @@ export const authOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {
+        nickname: { label: 'nickname', type: 'text' },
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' },
       },
@@ -24,6 +25,7 @@ export const authOptions = {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
+                nickname: credentials.nickname,
                 email: credentials.email,
                 password: credentials.password,
               }),
@@ -59,6 +61,7 @@ export const authOptions = {
         return {
           ...token,
           user: {
+            nickname: user.nickname,
             name: user.name,
             email: user.email,
           },

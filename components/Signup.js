@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import generalLogin from '@/app/apis/user';
-import { emailValidation, passwordValidation } from '@/util/validation';
+import {
+  nicknameValidation,
+  emailValidation,
+  passwordValidation,
+} from '@/util/validation';
 import {
   INVALID_EMAIL,
   INVALID_PASSWORD,
@@ -13,21 +17,27 @@ import {
   VALID_EMAIL,
   VALID_PASSWORD,
   VALID_PASSWORDCHECK,
+  INVALID_NICKNAME,
+  VALID_NICKNAME,
 } from '@/util/variable';
 
 export default function Signup() {
   const router = useRouter();
 
+  const [error, setError] = useState(null);
   const [formState, setFormState] = useState({
+    nickname: '',
     email: '',
     password: '',
     passwordCheck: '',
   });
 
   const [validationState, setValidationState] = useState({
+    isValidNickname: false,
     isValidEmail: false,
     isValidPassword: false,
     isValidPasswordCheck: false,
+    nicknameCaption: INVALID_NICKNAME,
     emailCaption: INVALID_EMAIL,
     passwordCaption: INVALID_PASSWORD,
     passwordCheckCaption: INVALID_PASSWORDCHECK,
@@ -35,9 +45,28 @@ export default function Signup() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const info = { email: formState.email, password: formState.password };
+    const info = {
+      nickname: formState.nickname,
+      email: formState.email,
+      password: formState.password,
+    };
     const res = await generalLogin(info);
-    router.push(`/alert/?status=${res.status}&message=${res.data}`, '/alert');
+
+    if (res.data.err) return setError(res.data.err);
+    // error 없으면 모달로 push
+    return router.push(
+      `/alert/?status=${res.status}&message=${res.data}`,
+      '/alert',
+    );
+  };
+
+  const validateNickname = (nickname) => {
+    const isValid = nicknameValidation(nickname);
+    setValidationState((prevState) => ({
+      ...prevState,
+      isValidNickname: isValid,
+      nicknameCaption: isValid ? VALID_NICKNAME : INVALID_NICKNAME,
+    }));
   };
 
   const validateEmail = (email) => {
@@ -77,6 +106,7 @@ export default function Signup() {
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
 
+    if (name === 'nickname') validateNickname(value);
     if (name === 'email') validateEmail(value);
     if (name === 'password') validatePassword(value);
     if (name === 'passwordCheck') validatePasswordCheck(value);
@@ -101,6 +131,29 @@ export default function Signup() {
           />
         </div>
         <form onSubmit={handleSubmit} className={signup.signup_form}>
+          {error && <p className={signup.signup_form_error}>{error}</p>}
+          <input
+            value={formState.nickname}
+            onChange={handleChange}
+            className={signup.signup_form_nickname}
+            name="nickname"
+            type="text"
+            placeholder="닉네임"
+            style={{
+              borderColor: validationState.isValidNickname
+                ? '#04e45f'
+                : '#ff6060',
+            }}
+          />
+          <p
+            className={signup.signup_form_caption}
+            style={{
+              color: validationState.isValidNickname ? '#04e45f' : '#ff6060',
+            }}
+          >
+            {validationState.nicknameCaption}
+          </p>
+
           <input
             value={formState.email}
             onChange={handleChange}
@@ -109,13 +162,13 @@ export default function Signup() {
             type="text"
             placeholder="Email"
             style={{
-              borderColor: validationState.isValidEmail ? '#04e45f' : 'tomato',
+              borderColor: validationState.isValidEmail ? '#04e45f' : '#ff6060',
             }}
           />
           <p
             className={signup.signup_form_caption}
             style={{
-              color: validationState.isValidEmail ? '#04e45f' : 'tomato',
+              color: validationState.isValidEmail ? '#04e45f' : '#ff6060',
             }}
           >
             {validationState.emailCaption}
@@ -131,13 +184,13 @@ export default function Signup() {
             style={{
               borderColor: validationState.isValidPassword
                 ? '#04e45f'
-                : 'tomato',
+                : '#ff6060',
             }}
           />
           <p
             className={signup.signup_form_caption}
             style={{
-              color: validationState.isValidPassword ? '#04e45f' : 'tomato',
+              color: validationState.isValidPassword ? '#04e45f' : '#ff6060',
             }}
           >
             {validationState.passwordCaption}
@@ -153,7 +206,7 @@ export default function Signup() {
             style={{
               borderColor: validationState.isValidPasswordCheck
                 ? '#04e45f'
-                : 'tomato',
+                : '#ff6060',
             }}
           />
           <p
@@ -161,7 +214,7 @@ export default function Signup() {
             style={{
               color: validationState.isValidPasswordCheck
                 ? '#04e45f'
-                : 'tomato',
+                : '#ff6060',
             }}
           >
             {validationState.passwordCheckCaption}
