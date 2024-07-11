@@ -14,24 +14,25 @@ export default async function signup(req, res) {
         email === '' ||
         password === ''
       ) {
-        res.status(409).send('빈 항목이 존재합니다.');
+        return res.status(409).send('빈 항목이 존재합니다.');
       }
 
       if (
         await db.collection('user_cred').findOne({ nickname: `${nickname}` })
       ) {
-        res.status(409).json({ err: '해당 닉네임은 사용중입니다.' });
+        return res.status(409).json({ err: '해당 닉네임은 사용중입니다.' });
       }
       if (await db.collection('user_cred').findOne({ email: `${email}` })) {
-        res.status(409).json({ err: '이미 가입 된 이메일입니다.' });
+        return res.status(409).json({ err: '이미 가입 된 이메일입니다.' });
       }
       const hash = await bcrypt.hash(req.body.password, 10);
       req.body.password = hash;
       await db.collection('user_cred').insertOne(req.body);
-      res.status(200).send('가입이 완료되었습니다!');
+      return res.status(200).send('가입이 완료되었습니다!');
     } catch (err) {
       console.error(err);
-      res.status(500).send('서버 에러');
+      return res.status(500).send('서버 에러');
     }
   }
+  return res.status(405).send('Method Not Allowed');
 }
