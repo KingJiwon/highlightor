@@ -1,11 +1,8 @@
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
+
 import main from '../styles/pages/main.module.scss';
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <div className={main.main_container}>
       <div className={main.popular_highlight_container}>

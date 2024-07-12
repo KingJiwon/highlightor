@@ -1,14 +1,18 @@
 import Link from 'next/link';
 import header from '../styles/components/header.module.scss';
 
-export default function Header() {
+export default function Header({ user }) {
   return (
     <div className={header.container}>
       <div className={header.inner}>
         <div className={header.top_menu}>
-          <Link href={'/login'} className={header.login_btn}>
-            로그인
-          </Link>
+          {user ? (
+            <p>{user.nickname}님</p>
+          ) : (
+            <Link href={'/login'} className={header.login_btn}>
+              로그인
+            </Link>
+          )}
         </div>
         <div className={header.logo_container}>
           <Link href={'/'} className={header.logo}>
