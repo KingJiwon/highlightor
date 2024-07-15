@@ -9,7 +9,7 @@ import main from '../styles/pages/main.module.scss';
 export default function Home() {
   const { data: session, status } = useSession();
   if (status === 'loading') {
-    return <Loading />; // 로딩 상태일 때 표시할 내용
+    return <Loading />;
   }
 
   return (
