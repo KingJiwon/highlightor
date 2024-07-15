@@ -1,8 +1,17 @@
+'use client';
+
 import Link from 'next/link';
+import Loading from '@/components/Loading';
+import { useSession } from 'next-auth/react';
 
 import main from '../styles/pages/main.module.scss';
 
-export default async function Home() {
+export default function Home() {
+  const { data: session, status } = useSession();
+  if (status === 'loading') {
+    return <Loading />; // 로딩 상태일 때 표시할 내용
+  }
+
   return (
     <div className={main.main_container}>
       <div className={main.popular_highlight_container}>
@@ -90,7 +99,7 @@ export default async function Home() {
       <div className={main.user_highlight_container}>
         <div className={main.user_highlight_inner}>
           <div className={main.user_highlight_header}>
-            <p>MADDD님의 하이라이트</p>
+            <p>{session?.user.nickname}님의 하이라이트</p>
           </div>
           <div className={main.user_highlight_teams}>
             <div className={main.user_highlight_teams_logo}>

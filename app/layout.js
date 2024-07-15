@@ -1,6 +1,5 @@
 import '../styles/styles.scss';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import Provider from '@/components/Provider';
 import Header from '../components/Header';
 
 export const metadata = {
@@ -9,13 +8,13 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, modal }) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
   return (
     <html>
       <body>
-        <Header user={user} />
-        {children} {modal}
+        <Provider>
+          <Header />
+          {children} {modal}
+        </Provider>
       </body>
     </html>
   );

@@ -62,7 +62,6 @@ export const authOptions = {
           ...token,
           user: {
             nickname: user.nickname,
-            name: user.name,
             email: user.email,
           },
         };

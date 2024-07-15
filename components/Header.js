@@ -1,13 +1,32 @@
+'use client';
+
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
+
 import header from '../styles/components/header.module.scss';
 
-export default function Header({ user }) {
+export default function Header() {
+  const { data: session, status } = useSession();
+  if (status === 'loading') {
+    return <></>;
+  }
+
   return (
     <div className={header.container}>
       <div className={header.inner}>
         <div className={header.top_menu}>
-          {user ? (
-            <p>{user.nickname}님</p>
+          {session?.user ? (
+            <div>
+              <Link
+                href={'/'}
+                onClick={() => {
+                  signOut();
+                }}
+                className={header.login_btn}
+              >
+                로그아웃
+              </Link>
+            </div>
           ) : (
             <Link href={'/login'} className={header.login_btn}>
               로그인
