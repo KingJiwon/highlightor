@@ -18,7 +18,7 @@ export default function Home() {
         <div className={main.popular_highlight_inner}>
           <div className={main.popular_highlight_header}>
             <img
-              src="/icon/teams/arsenal.svg"
+              src="/icon/teams/pl/arsenal.svg"
               alt="팀 로고"
               className={main.popular_highlight_header_logo}
             />
@@ -103,22 +103,22 @@ export default function Home() {
           </div>
           <div className={main.user_highlight_teams}>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/arsenal.svg" />
+              <img src="/icon/teams/pl/arsenal.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/chelsea.svg" />
+              <img src="/icon/teams/pl/chelsea.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/liverpool.svg" />
+              <img src="/icon/teams/pl/liverpool.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/manchester_united.svg" />
+              <img src="/icon/teams/pl/manchester-united.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/tottenham.svg" />
+              <img src="/icon/teams/pl/tottenham.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/arsenal.svg" />
+              <img src="/icon/teams/pl/manchester-city.svg" />
             </div>
           </div>
         </div>

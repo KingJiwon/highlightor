@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <section className={loading.section}>
       <h2>HighLightor</h2>
-      <div class={loading.loading}>
+      <div className={loading.loading}>
         <span>L</span>
         <span>O</span>
         <span>A</span>
