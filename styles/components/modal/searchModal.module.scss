@@ -1,0 +1,82 @@
+@use '../../include';
+.container {
+  background-color: include.$bg-color-white;
+  width: 1000px;
+  height: 700px;
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid include.$border-color-gray;
+    font-size: 22px;
+    color: include.$text-color-gray;
+    .header_exit {
+      cursor: pointer;
+      position: absolute;
+      background-image: url('/icon/normal/x_circle.svg');
+      background-size: contain;
+      background-color: inherit;
+      right: 30px;
+      height: 40px;
+      width: 40px;
+      color: include.$bg-color-white;
+      border: none;
+      border-radius: 50%;
+    }
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    input {
+      width: 410px;
+      height: 50px;
+      outline: none;
+      border: 3px solid include.$main-color-black;
+      padding: 0px 30px;
+      font-size: 16px;
+    }
+    input:focus {
+      border: 3px solid include.$main-color-green;
+      transition: all 0.15s linear;
+      & + button {
+        background-color: include.$main-color-green;
+        transition: all 0.15s linear;
+      }
+    }
+    input::placeholder {
+      font-size: 16px;
+      font-family: include.$main-font-bold;
+      color: include.$text-color-gray;
+    }
+    button {
+      cursor: pointer;
+      margin-left: 8px;
+      width: 90px;
+      height: 50px;
+      background-color: include.$main-color-black;
+      color: include.$bg-color-white;
+      font-family: include.$main-font-bold;
+      font-size: 16px;
+      outline: none;
+      border: none;
+    }
+  }
+  .search_list {
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    height: 400px;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

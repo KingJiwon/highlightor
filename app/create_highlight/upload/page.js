@@ -21,15 +21,17 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_fw}>FW</div>
               <div className={upload.uploader_btn_upload}>
-                <p>선수 검색</p>
-                <p>영상 업로드</p>
+                <Link href={'/create_highlight/upload/search_modal'}>
+                  선수 검색
+                </Link>
+                <Link href={'/'}>영상 업로드</Link>
               </div>
             </div>
             <div className={upload.uploader_player_container}>
               <div className={upload.uploader_player}>
                 <img
                   className={upload.uploader_player_img}
-                  src="/images/test/player.jpg"
+                  src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p814243780.png"
                   alt="선수 이미지"
                 />
                 <p className={upload.uploader_player_name}>마르틴 외데고르</p>
@@ -37,7 +39,7 @@ export default function page() {
               <div className={upload.uploader_player}>
                 <img
                   className={upload.uploader_player_img}
-                  src="/images/test/player.jpg"
+                  src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p810243780.png"
                   alt="선수 이미지"
                 />
                 <p className={upload.uploader_player_name}>마르틴 외데고르</p>
@@ -59,8 +61,10 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_mf}>MF</div>
               <div className={upload.uploader_btn_upload}>
-                <p>선수 검색</p>
-                <p>영상 업로드</p>
+                <Link href={'/create_highlight/upload/search_modal'}>
+                  선수 검색
+                </Link>
+                <Link href={'/'}>영상 업로드</Link>
               </div>
             </div>
             <div className={upload.uploader_player_container}>
@@ -89,8 +93,10 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_df}>DF</div>
               <div className={upload.uploader_btn_upload}>
-                <p>선수 검색</p>
-                <p>영상 업로드</p>
+                <Link href={'/create_highlight/upload/search_modal'}>
+                  선수 검색
+                </Link>
+                <Link href={'/'}>영상 업로드</Link>
               </div>
             </div>
             <div className={upload.uploader_player_container}>
@@ -144,8 +150,10 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_gk}>GK</div>
               <div className={upload.uploader_btn_upload}>
-                <p>선수 검색</p>
-                <p>영상 업로드</p>
+                <Link href={'/create_highlight/upload/search_modal'}>
+                  선수 검색
+                </Link>
+                <Link href={'/'}>영상 업로드</Link>
               </div>
             </div>
             <div className={upload.uploader_player_container}>
