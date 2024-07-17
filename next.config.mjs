@@ -7,4 +7,14 @@ export default {
     config.resolve.extensions.push('.js', '.jsx', '.ts', '.tsx');
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'fco.dn.nexoncdn.co.kr', // image URL hostname
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
