@@ -1,42 +1,75 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { getPlayerData } from '@/app/apis/data';
+import { getPlayerData, getSeasonData } from '@/app/apis/data';
 import searchModal from '../../styles/components/modal/searchModal.module.scss';
 
 export default function SearchPlayer() {
-  // 선수 고유 식별자의 앞 3자리가 시즌 정보
-
   const router = useRouter();
-  const [data, setData] = useState([]);
+  const [playerData, setPlayerData] = useState([]);
+  const [seasonData, setSeasonData] = useState([]);
   const [searchData, setSearchData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [retryCount, setRetryCount] = useState({});
+  const [error, setError] = useState(null);
   const inputRef = useRef(null);
 
+  // 선수검색
   const handleSubmit = (e) => {
-    // name으로 선수 고유식별자 찾기
     e.preventDefault();
-    const filteredData = data.filter(
-      (el) => el.name === inputRef.current.value,
+    // name으로 선수 고유식별자 찾기
+    if (inputRef.current.value.trim() === '') {
+      return setError('검색어를 입력해주세요');
+    }
+    setRetryCount({});
+    const searchedNameList = playerData.filter((el) =>
+      el.name.includes(inputRef.current.value),
     );
-    setSearchData(filteredData);
+
+    // 시즌이미지 정보 추가 (고유 식별자 앞 3자리 -> 시즌id)
+    const addSeason = searchedNameList.map((el) => {
+      const findSeason = seasonData.find(
+        (season) => season.seasonId === +String(el.id).slice(0, 3),
+      );
+      const { seasonImg, className } = findSeason;
+      return {
+        ...el,
+        seasonImg,
+        className,
+      };
+    });
+    setError(false);
+    return setSearchData(addSeason);
   };
 
-  // spid 액션샷 없으면 -> spid 대갈사진 없으면-> pid기본 대갈 사진
-  const handleImageError = (e, id, retry) => {
-    if (retry === 1) {
-      e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${id}.png`;
-      e.target.onerror = () => handleImageError(e, id, 2);
-    } else if (retry === 2) {
-      const pid = String(id).slice(-6).replace(/^0+/, '');
-      e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${pid}.png`;
-    }
+  // 이미지 검색
+  const handleImageError = (e, id) => {
+    setRetryCount((prev) => {
+      const retry = (prev[id] || 0) + 1;
+      const newRetryCount = { ...prev, [id]: retry };
+
+      if (retry === 1) {
+        e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${id}.png`;
+      } else if (retry === 2) {
+        const pid = String(id).slice(-6).replace(/^0+/, '');
+        e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${pid}.png`;
+      } else if (retry === 3) {
+        e.target.src = '/images/undefined_player.png';
+        e.target.onerror = () => console.log('이미지 로드 오류');
+      }
+
+      return newRetryCount;
+    });
   };
 
   useEffect(() => {
-    // 서버컴포넌트에서 보내기
-    const playerData = async () => setData((await getPlayerData()).data);
-    playerData();
+    // data fetch 서버컴포넌트에서 보내기
+    const player = async () => setPlayerData((await getPlayerData()).data);
+    player();
+    const season = async () => setSeasonData((await getSeasonData()).data);
+    season();
   }, []);
 
   return (
@@ -52,26 +85,45 @@ export default function SearchPlayer() {
           className={searchModal.header_exit}
         ></button>
       </div>
+
       <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
         className={searchModal.form}
       >
-        <input ref={inputRef} type="text" placeholder="선수명을 입력해주세요" />
-        <button type="submit">검색</button>
+        {error && <p className={searchModal.form_caption}>{error}</p>}
+        <div className={searchModal.form_input_box}>
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="선수명을 입력해주세요"
+          />
+          <button type="submit">검색</button>
+        </div>
       </form>
       <div className={searchModal.search_list}>
         {searchData.map((el) => {
-          const { id } = el;
+          const { id, name, seasonImg } = el;
           return (
-            <img
-              key={id}
-              src={`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${id}.png`}
-              onError={(e) => {
-                handleImageError(e, id, 1);
-              }}
-            />
+            <div key={id} className={searchModal.search_list_player}>
+              <Image
+                className={searchModal.search_list_player_img}
+                alt={name}
+                src={`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${id}.png`}
+                onError={(e) => {
+                  handleImageError(e, id);
+                }}
+              />
+              <div className={searchModal.search_list_player_info}>
+                <Image
+                  className={searchModal.search_list_player_season}
+                  alt={name}
+                  src={seasonImg}
+                />
+                <p className={searchModal.search_list_player_name}>{name}</p>
+              </div>
+            </div>
           );
         })}
       </div>

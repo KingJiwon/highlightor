@@ -26,42 +26,53 @@
       border-radius: 50%;
     }
   }
+
   .form {
-    display: flex;
-    justify-content: center;
     margin-top: 40px;
-    input {
-      width: 410px;
-      height: 50px;
-      outline: none;
-      border: 3px solid include.$main-color-black;
-      padding: 0px 30px;
-      font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .form_caption {
+      font-size: 14px;
+      color: include.$error-color-red;
     }
-    input:focus {
-      border: 3px solid include.$main-color-green;
-      transition: all 0.15s linear;
-      & + button {
-        background-color: include.$main-color-green;
-        transition: all 0.15s linear;
+    .form_input_box {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      input {
+        width: 410px;
+        height: 50px;
+        outline: none;
+        border: 3px solid include.$main-color-black;
+        padding: 0px 30px;
+        font-size: 16px;
       }
-    }
-    input::placeholder {
-      font-size: 16px;
-      font-family: include.$main-font-bold;
-      color: include.$text-color-gray;
-    }
-    button {
-      cursor: pointer;
-      margin-left: 8px;
-      width: 90px;
-      height: 50px;
-      background-color: include.$main-color-black;
-      color: include.$bg-color-white;
-      font-family: include.$main-font-bold;
-      font-size: 16px;
-      outline: none;
-      border: none;
+      input:focus {
+        border: 3px solid include.$main-color-green;
+        transition: all 0.15s linear;
+        & + button {
+          background-color: include.$main-color-green;
+          transition: all 0.15s linear;
+        }
+      }
+      input::placeholder {
+        font-size: 16px;
+        font-family: include.$main-font-bold;
+        color: include.$text-color-gray;
+      }
+      button {
+        cursor: pointer;
+        margin-left: 8px;
+        width: 90px;
+        height: 50px;
+        background-color: include.$main-color-black;
+        color: include.$bg-color-white;
+        font-family: include.$main-font-bold;
+        font-size: 16px;
+        outline: none;
+        border: none;
+      }
     }
   }
   .search_list {
@@ -74,9 +85,63 @@
     overflow-y: scroll;
     width: 100%;
     height: 400px;
-    img {
-      width: 100px;
-      height: 100px;
+    .search_list_player {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+      margin: 10px 10px;
+      .search_list_player_img {
+        width: 120px;
+      }
+      .search_list_player_add_btn {
+        padding: 5px;
+        background-color: include.$main-color-black;
+        color: include.$main-color-green;
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        outline: none;
+        border: 1px solid include.$main-color-green;
+        border-radius: 5px;
+      }
+      .search_list_player_info {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .search_list_player_season {
+          width: 30px;
+        }
+        .search_list_player_name {
+          margin-left: 5px;
+        }
+      }
+    }
+    .search_list_player::after {
+      content: '';
+      position: absolute;
+      right: -50%;
+      bottom: -50%;
+      width: 100%;
+      height: 100%;
+      background-color: inherit;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: #ffffff;
+
+      transition: all 0.15s linear;
+    }
+    .search_list_player:hover {
+      &.search_list_player::after {
+        content: '+';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($color: include.$main-color-green, $alpha: 0.7);
+      }
     }
   }
 }
