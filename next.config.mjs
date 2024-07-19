@@ -15,6 +15,12 @@ export default {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ssl.nexon.com', // image URL hostname
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
