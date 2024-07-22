@@ -75,6 +75,9 @@
       }
     }
   }
+  .hide {
+    display: none;
+  }
   .search_list {
     margin-top: 80px;
     display: flex;
@@ -94,7 +97,8 @@
       width: 150px;
       margin: 10px 10px;
       .search_list_player_img {
-        width: 120px;
+        width: auto;
+        height: auto;
       }
       .search_list_player_add_btn {
         padding: 5px;
@@ -113,9 +117,11 @@
         justify-content: center;
         align-items: center;
         .search_list_player_season {
-          width: 25px;
+          width: auto;
+          height: auto;
         }
         .search_list_player_name {
+          font-size: 18px;
           margin-left: 5px;
         }
       }
