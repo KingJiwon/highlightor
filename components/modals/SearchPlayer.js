@@ -1,14 +1,18 @@
 'use client';
 
+import { CANNOT_FIND_PLAYER, EMPTY_SEARCH_INPUT } from '@/util/variable';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { getPlayerData, getSeasonData } from '@/app/apis/data';
-import searchModal from '../../styles/components/modal/searchModal.module.scss';
+import { useSquad } from '@/util/context/SquadContext';
 import Loading from '../Loading';
+import searchModal from '../../styles/components/modal/searchModal.module.scss';
 
 export default function SearchPlayer() {
   const router = useRouter();
+  const { position } = useParams();
+  const { addPlayer } = useSquad();
 
   // dataState
   const [playerData, setPlayerData] = useState([]);
@@ -31,13 +35,13 @@ export default function SearchPlayer() {
     setSearchData(null);
     // name으로 선수 고유식별자 찾기
     if (inputRef.current.value.trim() === '') {
-      return setError('검색어를 입력해주세요');
+      return setError(EMPTY_SEARCH_INPUT);
     }
     const searchedNameList = playerData.filter((el) =>
       el.name.includes(inputRef.current.value),
     );
     if (searchedNameList.length === 0) {
-      setError('해당 선수를 찾을 수 없습니다');
+      setError(CANNOT_FIND_PLAYER);
       return setIsAllLoad(true);
     }
 
@@ -88,6 +92,14 @@ export default function SearchPlayer() {
     }
   };
 
+  // 선수 추가
+  const handleClickPlayer = (event, seasonImg, name, className) => {
+    const playerImg = event.target.children[0].src;
+    router.back();
+    addPlayer(position, playerImg, seasonImg, name, className);
+    console.log('추가 성공');
+  };
+
   useEffect(() => {
     // data fetch 서버컴포넌트에서 보내기
     const player = async () => setPlayerData((await getPlayerData()).data);
@@ -133,7 +145,13 @@ export default function SearchPlayer() {
             const { id, name, seasonImg, className } = el;
 
             return (
-              <div key={id} className={searchModal.search_list_player}>
+              <div
+                key={id}
+                className={searchModal.search_list_player}
+                onClick={(event) => {
+                  handleClickPlayer(event, seasonImg, name, className);
+                }}
+              >
                 <img
                   className={searchModal.search_list_player_img}
                   alt={name}

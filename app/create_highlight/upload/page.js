@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
+import { useSquad } from '@/util/context/SquadContext';
 import upload from '../../../styles/pages/upload.module.scss';
 
-export default function page() {
+export default function Page() {
+  const { squad } = useSquad();
+  console.log(squad);
   return (
     <>
       <div className={upload.discriptor_container}>
@@ -21,7 +26,7 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_fw}>FW</div>
               <div className={upload.uploader_btn_upload}>
-                <Link href={'/create_highlight/upload/search_modal'}>
+                <Link href={'/create_highlight/upload/search_modal/fw'}>
                   선수 검색
                 </Link>
                 <Link href={'/'}>영상 업로드</Link>
@@ -61,7 +66,7 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_mf}>MF</div>
               <div className={upload.uploader_btn_upload}>
-                <Link href={'/create_highlight/upload/search_modal'}>
+                <Link href={'/create_highlight/upload/search_modal/mf'}>
                   선수 검색
                 </Link>
                 <Link href={'/'}>영상 업로드</Link>
@@ -93,7 +98,7 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_df}>DF</div>
               <div className={upload.uploader_btn_upload}>
-                <Link href={'/create_highlight/upload/search_modal'}>
+                <Link href={'/create_highlight/upload/search_modal/df'}>
                   선수 검색
                 </Link>
                 <Link href={'/'}>영상 업로드</Link>
@@ -150,7 +155,7 @@ export default function page() {
             <div className={upload.uploader_btn_container}>
               <div className={upload.uploader_position_gk}>GK</div>
               <div className={upload.uploader_btn_upload}>
-                <Link href={'/create_highlight/upload/search_modal'}>
+                <Link href={'/create_highlight/upload/search_modal/gk'}>
                   선수 검색
                 </Link>
                 <Link href={'/'}>영상 업로드</Link>

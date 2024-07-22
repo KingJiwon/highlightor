@@ -4,7 +4,7 @@
   width: 100%;
   height: 100vh;
   padding: 10em 0;
-  background: include.$bg-color-gray;
+  background: inherit;
   h2 {
     margin: 5em 0 1em;
     color: include.$main-color-black;
@@ -16,7 +16,6 @@
   .loading {
     font-size: 84px;
     font-family: include.$main-font-bold;
-
     text-align: center;
     span {
       display: inline-block;

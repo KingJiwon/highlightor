@@ -1,7 +1,11 @@
+import SquadProvider from '@/util/context/SquadContext';
+
 export default function layout({ children, modal }) {
   return (
     <>
-      {children} {modal}
+      <SquadProvider>
+        {children} {modal}
+      </SquadProvider>
     </>
   );
 }
