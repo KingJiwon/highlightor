@@ -13,7 +13,7 @@ export default function SearchPlayer() {
   const [searchData, setSearchData] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [retryCount, setRetryCount] = useState({});
-  const [loadList, setLoadList] = useState({});
+  // const [loadList, setLoadList] = useState({});
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
 
@@ -50,26 +50,25 @@ export default function SearchPlayer() {
     setRetryCount((prev) => {
       const retry = (prev[id] || 0) + 1;
       const newRetryCount = { ...prev, [id]: retry };
-      console.log(e.target);
+      if (retry === 1) {
+        e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${id}.png`;
+      } else if (retry === 2) {
+        const pid = String(id).slice(-6).replace(/^0+/, '');
+        e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${pid}.png`;
+      } else if (retry === 3) {
+        e.target.src = '/images/undefined_player.png';
+        e.target.onerror = () => console.log('이미지 로드 오류');
+      }
       return newRetryCount;
     });
-    if (retryCount.id === 1) {
-      e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${id}.png`;
-    } else if (retryCount.id === 2) {
-      const pid = String(id).slice(-6).replace(/^0+/, '');
-      e.target.src = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${pid}.png`;
-    } else if (retryCount.id === 3) {
-      e.target.src = '/images/undefined_player.png';
-      e.target.onerror = () => console.log('이미지 로드 오류');
-    }
   };
 
-  const handleOnLoad = (id) => {
-    const newLoadList = { ...loadList, [id]: true };
-    // console.log(Object.values(newLoadList));
-    return setLoadList(newLoadList);
-  };
-  console.log(loadList);
+  // const handleOnLoad = (id) => {
+  //   const newLoadList = { ...loadList, [id]: true };
+  //   // console.log(Object.values(newLoadList));
+  //   return setLoadList(newLoadList);
+  // };
+
   useEffect(() => {
     // data fetch 서버컴포넌트에서 보내기
     const player = async () => setPlayerData((await getPlayerData()).data);
@@ -110,26 +109,24 @@ export default function SearchPlayer() {
       </form>
       <div className={searchModal.search_list}>
         {searchData.map((el) => {
-          const { id, name, seasonImg } = el;
+          const { id, name, seasonImg, className } = el;
+
           return (
             <div key={id} className={searchModal.search_list_player}>
-              <Image
-                width={120}
-                height={200}
+              <img
                 className={searchModal.search_list_player_img}
                 alt={name}
                 src={`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${id}.png`}
                 onError={(e) => {
                   handleImageError(e, id);
                 }}
-                onLoad={() => handleOnLoad(id)}
               />
               <div className={searchModal.search_list_player_info}>
                 <Image
                   width={30}
-                  height={10}
+                  height={20}
                   className={searchModal.search_list_player_season}
-                  alt={name}
+                  alt={className}
                   src={seasonImg}
                 />
                 <p className={searchModal.search_list_player_name}>{name}</p>
