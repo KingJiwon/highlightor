@@ -68,9 +68,20 @@
 
         .player_position {
           font-family: include.$main-font-bold;
-          font-size: 25px;
-          color: red;
+          font-size: 22px;
           margin: 30px 0px;
+        }
+        .player_position.fw {
+          color: #ff0000;
+        }
+        .player_position.mf {
+          color: #469719;
+        }
+        .player_position.df {
+          color: #468cff;
+        }
+        .player_position.gk {
+          color: #ffae44;
         }
         .player_add_btn {
           font-family: include.$main-font-bold;

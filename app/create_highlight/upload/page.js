@@ -1,17 +1,28 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useSquad } from '@/util/context/SquadContext';
 import Image from 'next/image';
-
 import upload from '../../../styles/pages/upload.module.scss';
 
 export default function Page() {
   const { squad, removePlayer } = useSquad();
+  const [err, setErr] = useState(null);
   const squadLength = Object.values(squad).flat().length;
-  const handleRemove = (e, position, playerId) => {
+  const handleRemove = (position, playerId) => {
     removePlayer(position, playerId);
   };
+  // const handleAdd = (e, position) => {
+  //   if (squadLength === 11) {
+  //     e.preventDefault();
+  //     return setErr('스쿼드는 11명 이상으로 구성할 수 없습니다.');
+  //   }
+  //   if (squad.position.length === 5) {
+  //     e.preventDefault();
+  //     return setErr('한 포지션에 5명 이상의 선수를 구성할 수 없습니다.');
+  //   }
+  // };
   return (
     <>
       <div className={upload.discriptor_container}>
@@ -25,15 +36,21 @@ export default function Page() {
       <div className={upload.container}>
         <div className={upload.inner}>
           <div className={upload.counter_container}>
-            <p className={upload.counter}>{squadLength}/11</p>
+            <p className={upload.counter}>{squadLength} / 11</p>
+            {setErr && <p>{err}</p>}
           </div>
           {Object.keys(squad).map((position, idx) => (
             <div key={idx} className={upload.player_container}>
               <div className={upload.player_container_left}>
-                <div className={upload.player_position}>
+                <div
+                  className={`${upload.player_position} ${upload[position]}`}
+                >
                   {position.toUpperCase()}
                 </div>
                 <Link
+                  // onClick={(e) => {
+                  //   handleAdd(e, position);
+                  // }}
                   className={upload.player_add_btn}
                   href={`/create_highlight/upload/search_modal/${position}`}
                 >
@@ -45,8 +62,8 @@ export default function Page() {
                   <div
                     className={upload.player_info}
                     key={player.name}
-                    onClick={(e) => {
-                      handleRemove(e, position, player.id);
+                    onClick={() => {
+                      handleRemove(position, player.id);
                     }}
                   >
                     <Image
