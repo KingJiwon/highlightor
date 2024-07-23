@@ -7,8 +7,11 @@ import Image from 'next/image';
 import upload from '../../../styles/pages/upload.module.scss';
 
 export default function Page() {
-  const { squad } = useSquad();
-
+  const { squad, removePlayer } = useSquad();
+  const squadLength = Object.values(squad).flat().length;
+  const handleRemove = (e, position, playerId) => {
+    removePlayer(position, playerId);
+  };
   return (
     <>
       <div className={upload.discriptor_container}>
@@ -22,7 +25,7 @@ export default function Page() {
       <div className={upload.container}>
         <div className={upload.inner}>
           <div className={upload.counter_container}>
-            <p className={upload.counter}>0/11</p>
+            <p className={upload.counter}>{squadLength}/11</p>
           </div>
           {Object.keys(squad).map((position, idx) => (
             <div key={idx} className={upload.player_container}>
@@ -39,7 +42,13 @@ export default function Page() {
               </div>
               <div className={upload.player_container_right}>
                 {squad[position].map((player) => (
-                  <div className={upload.player_info} key={player.name}>
+                  <div
+                    className={upload.player_info}
+                    key={player.name}
+                    onClick={(e) => {
+                      handleRemove(e, position, player.id);
+                    }}
+                  >
                     <Image
                       width={110}
                       height={110}
@@ -53,6 +62,7 @@ export default function Page() {
                         height={20}
                         className={upload.player_season}
                         src={player.seasonImg}
+                        alt={player.className}
                       />
                       <p className={upload.player_name}>{player.name}</p>
                     </div>

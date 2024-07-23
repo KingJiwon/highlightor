@@ -100,9 +100,11 @@
         align-items: center;
         padding-left: 30px;
         .player_info {
+          position: relative;
           margin: 0 15px;
-          .player_img {
-          }
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           .player_text {
             display: flex;
             justify-content: center;
@@ -115,6 +117,31 @@
               font-size: 15px;
               font-family: include.$main-font-bold;
             }
+          }
+        }
+        .player_info::after {
+          position: absolute;
+          content: '';
+          top: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          background-color: inherit;
+          font-size: 40px;
+          color: #ffffff;
+          transition: all 0.15s linear;
+        }
+        .player_info:hover {
+          cursor: pointer;
+          &.player_info::after {
+            content: '-';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(
+              $color: include.$error-color-red,
+              $alpha: 0.7
+            );
           }
         }
       }
