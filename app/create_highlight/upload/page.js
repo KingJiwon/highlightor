@@ -19,51 +19,57 @@ export default function Page() {
           </p>
         </div>
       </div>
-      <div className={upload.uploader_container}>
-        <div className={upload.uploader_inner}>
-          <div className={upload.uploader_counter_container}>
-            <p className={upload.uploader_counter}>0/11</p>
+      <div className={upload.container}>
+        <div className={upload.inner}>
+          <div className={upload.counter_container}>
+            <p className={upload.counter}>0/11</p>
           </div>
           {Object.keys(squad).map((position, idx) => (
-            <div key={idx} className={upload.uploader_main_container}>
-              <div className={upload.uploader_btn_container}>
-                <div className={upload.uploader_position}>{position}</div>
-                <div className={upload.uploader_btn_upload}>
-                  <Link
-                    href={`/create_highlight/upload/search_modal/${position}`}
-                  >
-                    선수 검색
-                  </Link>
-                  <Link href={'/'}>영상 업로드</Link>
+            <div key={idx} className={upload.player_container}>
+              <div className={upload.player_container_left}>
+                <div className={upload.player_position}>
+                  {position.toUpperCase()}
                 </div>
+                <Link
+                  className={upload.player_add_btn}
+                  href={`/create_highlight/upload/search_modal/${position}`}
+                >
+                  선수 검색
+                </Link>
               </div>
-              <div className={upload.uploader_player_container}>
-                <div className={upload.uploader_player}>
-                  {squad[position].map((player) => (
-                    <>
+              <div className={upload.player_container_right}>
+                {squad[position].map((player) => (
+                  <div className={upload.player_info} key={player.name}>
+                    <Image
+                      width={110}
+                      height={110}
+                      className={upload.player_img}
+                      src={player.playerImg}
+                      alt={player.name}
+                    />
+                    <div className={upload.player_text}>
                       <Image
-                        width={200}
-                        height={100}
-                        className={upload.uploader_player_img}
-                        src={player.playerImg}
-                        alt={player.name}
+                        width={25}
+                        height={20}
+                        className={upload.player_season}
+                        src={player.seasonImg}
                       />
-                      <p className={upload.uploader_player_name}>
-                        {player.name}
-                      </p>
-                    </>
-                  ))}
-                </div>
-              </div>
-              <div className={upload.uploader_highlight}>
-                <img src="/images/test/test_img.jpg" alt="테스트 이미지" />
+                      <p className={upload.player_name}>{player.name}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
-          <Link
-            href={'/detail_highlight/1234'}
-            className={upload.uploader_create_btn_container}
-          >
+          <div className={upload.highlight_container}>
+            <img
+              className={upload.highlight}
+              src="/images/test/test_img.jpg"
+              alt="테스트 이미지"
+            />
+            <Link href={'/'}>영상 업로드</Link>
+          </div>
+          <Link href={'/detail_highlight/1234'} className={upload.create_btn}>
             <p>하이라이트 생성</p>
           </Link>
         </div>

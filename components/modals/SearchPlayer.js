@@ -93,10 +93,10 @@ export default function SearchPlayer() {
   };
 
   // 선수 추가
-  const handleClickPlayer = (event, seasonImg, name, className) => {
+  const handleClickPlayer = (event, id, seasonImg, name, className) => {
     const playerImg = event.target.children[0].src;
     router.back();
-    addPlayer(position, playerImg, seasonImg, name, className);
+    addPlayer(position, id, playerImg, seasonImg, name, className);
     console.log('추가 성공');
   };
 
@@ -149,7 +149,7 @@ export default function SearchPlayer() {
                 key={id}
                 className={searchModal.search_list_player}
                 onClick={(event) => {
-                  handleClickPlayer(event, seasonImg, name, className);
+                  handleClickPlayer(event, id, seasonImg, name, className);
                 }}
               >
                 <img

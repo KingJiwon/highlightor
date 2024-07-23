@@ -12,12 +12,12 @@ export default function SquadProvider({ children }) {
     gk: [],
   });
 
-  const addPlayer = (position, playerImg, seasonImg, name, className) => {
+  const addPlayer = (position, id, playerImg, seasonImg, name, className) => {
     setSquad((prev) => ({
       ...prev,
       [position]: [
         ...prev[position],
-        { playerImg, seasonImg, name, className },
+        { id, playerImg, seasonImg, name, className },
       ],
     }));
   };
