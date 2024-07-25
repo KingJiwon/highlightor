@@ -114,7 +114,7 @@ export default function Page() {
             </div>
           ))}
           <div className={upload.highlight_container}>
-            <UploadWidget handleAlert={handleAlert} />
+            <UploadWidget handleAlert={handleAlert} alertRef={alertRef} />
           </div>
           <Link href={'/detail_highlight/1234'} className={upload.create_btn}>
             <p>하이라이트 생성</p>
