@@ -50,6 +50,12 @@
         font-family: include.$main-font-bold;
         font-size: 25px;
       }
+      .alert {
+        font-size: 16px;
+        margin-top: 10px;
+        font-family: include.$main-font-bold;
+        color: include.$error-color-red;
+      }
     }
     .player_container {
       box-sizing: content-box;
@@ -163,10 +169,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .highlight {
-        height: 300px;
+      .highlight_video_container {
+        width: 800px;
       }
-      a {
+      .highlight_upload_btn {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -180,7 +186,7 @@
         font-size: 16px;
         margin-top: 10px;
       }
-      a:hover {
+      .highlight_upload_btn:hover {
         cursor: pointer;
         border: 1px solid include.$main-color-green;
         background-color: include.$main-color-green;

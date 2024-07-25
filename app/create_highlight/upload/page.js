@@ -1,28 +1,46 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSquad } from '@/util/context/SquadContext';
 import Image from 'next/image';
+import { CldUploadWidget, CldVideoPlayer } from 'next-cloudinary';
 import upload from '../../../styles/pages/upload.module.scss';
+import 'next-cloudinary/dist/cld-video-player.css';
 
 export default function Page() {
   const { squad, removePlayer } = useSquad();
-  const [err, setErr] = useState(null);
+
+  const [alert, setAlert] = useState(null);
+  const [publicId, setPublicId] = useState('');
+
+  const alertRef = useRef();
+
   const squadLength = Object.values(squad).flat().length;
+
   const handleRemove = (position, playerId) => {
     removePlayer(position, playerId);
+    setAlert(null);
   };
-  // const handleAdd = (e, position) => {
-  //   if (squadLength === 11) {
-  //     e.preventDefault();
-  //     return setErr('스쿼드는 11명 이상으로 구성할 수 없습니다.');
-  //   }
-  //   if (squad.position.length === 5) {
-  //     e.preventDefault();
-  //     return setErr('한 포지션에 5명 이상의 선수를 구성할 수 없습니다.');
-  //   }
-  // };
+  const handleAdd = (e, position) => {
+    if (squadLength === 11) {
+      e.preventDefault();
+      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return setAlert('스쿼드는 11명 이상으로 구성할 수 없습니다.');
+    }
+    if (squad[position].length === 5) {
+      e.preventDefault();
+      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return setAlert('한 포지션에 5명 이상의 선수를 구성할 수 없습니다.');
+    }
+    if (position === 'gk' && squad[position].length === 1) {
+      e.preventDefault();
+      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return setAlert('GK 포지션은 최대 1명으로 구성 가능합니다.');
+    }
+    return setAlert(null);
+  };
+  console.log(publicId);
   return (
     <>
       <div className={upload.discriptor_container}>
@@ -37,7 +55,11 @@ export default function Page() {
         <div className={upload.inner}>
           <div className={upload.counter_container}>
             <p className={upload.counter}>{squadLength} / 11</p>
-            {setErr && <p>{err}</p>}
+            {setAlert && (
+              <p ref={alertRef} className={upload.alert}>
+                {alert}
+              </p>
+            )}
           </div>
           {Object.keys(squad).map((position, idx) => (
             <div key={idx} className={upload.player_container}>
@@ -48,9 +70,9 @@ export default function Page() {
                   {position.toUpperCase()}
                 </div>
                 <Link
-                  // onClick={(e) => {
-                  //   handleAdd(e, position);
-                  // }}
+                  onClick={(e) => {
+                    handleAdd(e, position);
+                  }}
                   className={upload.player_add_btn}
                   href={`/create_highlight/upload/search_modal/${position}`}
                 >
@@ -89,12 +111,40 @@ export default function Page() {
             </div>
           ))}
           <div className={upload.highlight_container}>
-            <img
-              className={upload.highlight}
-              src="/images/test/test_img.jpg"
-              alt="테스트 이미지"
-            />
-            <Link href={'/'}>영상 업로드</Link>
+            <div className={upload.highlight_video_container}>
+              {publicId && (
+                <CldVideoPlayer
+                  src={publicId}
+                  aspectRatio="16:9"
+                  alt="Uploaded Image Not Found"
+                />
+              )}
+            </div>
+            <CldUploadWidget
+              signatureEndpoint="/api/upload/cloudinary-params"
+              folder="test"
+              onSuccess={(result) => {
+                const { info } = result;
+                if (!info || !info.public_id) {
+                  return setAlert('업로드 실패');
+                }
+                setPublicId(info.public_id);
+                return setAlert(null);
+              }}
+              onFailure={(error) => {
+                console.error(error);
+                return setAlert('업로드 실패');
+              }}
+            >
+              {({ open }) => (
+                <button
+                  className={upload.highlight_upload_btn}
+                  onClick={() => open()}
+                >
+                  영상 업로드
+                </button>
+              )}
+            </CldUploadWidget>
           </div>
           <Link href={'/detail_highlight/1234'} className={upload.create_btn}>
             <p>하이라이트 생성</p>
