@@ -169,30 +169,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .highlight_video_container {
-        width: 800px;
-      }
-      .highlight_upload_btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 120px;
-        height: 40px;
-        border: 1px solid include.$main-color-green;
-        border-radius: 50px;
-        background-color: include.$main-color-black;
-        color: include.$main-color-green;
-        font-family: include.$main-font-bold;
-        font-size: 16px;
-        margin-top: 10px;
-      }
-      .highlight_upload_btn:hover {
-        cursor: pointer;
-        border: 1px solid include.$main-color-green;
-        background-color: include.$main-color-green;
-        color: include.$bg-color-white;
-        transition: all 0.15s linear;
-      }
     }
     .create_btn {
       display: flex;

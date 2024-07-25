@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { getPlayerData, getSeasonData } from '@/app/apis/data';
-import { useSquad } from '@/util/context/SquadContext';
+import { useSquad } from '@/hooks/SquadContext';
 import Loading from '../Loading';
 import searchModal from '../../styles/components/modal/searchModal.module.scss';
 

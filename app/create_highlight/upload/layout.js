@@ -1,4 +1,4 @@
-import SquadProvider from '@/util/context/SquadContext';
+import SquadProvider from '@/hooks/SquadContext';
 
 export default function layout({ children, modal }) {
   return (

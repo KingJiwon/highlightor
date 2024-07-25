@@ -2,9 +2,9 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { useSquad } from '@/util/context/SquadContext';
+import { useSquad } from '@/hooks/SquadContext';
 import Image from 'next/image';
-import { CldUploadWidget, CldVideoPlayer } from 'next-cloudinary';
+import UploadWidget from '@/components/UploadWidget';
 import upload from '../../../styles/pages/upload.module.scss';
 import 'next-cloudinary/dist/cld-video-player.css';
 
@@ -12,11 +12,14 @@ export default function Page() {
   const { squad, removePlayer } = useSquad();
 
   const [alert, setAlert] = useState(null);
-  const [publicId, setPublicId] = useState('');
 
   const alertRef = useRef();
 
   const squadLength = Object.values(squad).flat().length;
+
+  const handleAlert = (message) => {
+    setAlert(message);
+  };
 
   const handleRemove = (position, playerId) => {
     removePlayer(position, playerId);
@@ -40,7 +43,7 @@ export default function Page() {
     }
     return setAlert(null);
   };
-  console.log(publicId);
+
   return (
     <>
       <div className={upload.discriptor_container}>
@@ -111,40 +114,7 @@ export default function Page() {
             </div>
           ))}
           <div className={upload.highlight_container}>
-            <div className={upload.highlight_video_container}>
-              {publicId && (
-                <CldVideoPlayer
-                  src={publicId}
-                  aspectRatio="16:9"
-                  alt="Uploaded Image Not Found"
-                />
-              )}
-            </div>
-            <CldUploadWidget
-              signatureEndpoint="/api/upload/cloudinary-params"
-              folder="test"
-              onSuccess={(result) => {
-                const { info } = result;
-                if (!info || !info.public_id) {
-                  return setAlert('업로드 실패');
-                }
-                setPublicId(info.public_id);
-                return setAlert(null);
-              }}
-              onFailure={(error) => {
-                console.error(error);
-                return setAlert('업로드 실패');
-              }}
-            >
-              {({ open }) => (
-                <button
-                  className={upload.highlight_upload_btn}
-                  onClick={() => open()}
-                >
-                  영상 업로드
-                </button>
-              )}
-            </CldUploadWidget>
+            <UploadWidget handleAlert={handleAlert} />
           </div>
           <Link href={'/detail_highlight/1234'} className={upload.create_btn}>
             <p>하이라이트 생성</p>
