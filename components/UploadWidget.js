@@ -1,32 +1,40 @@
 'use cilent';
 
-import { useState } from 'react';
 import { CldUploadWidget, CldVideoPlayer } from 'next-cloudinary';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import deleteCloudData from '@/app/apis/upload';
+import { deleteCloudData } from '@/app/apis/upload';
+import {
+  EXCEED_FILE_SIZE,
+  NOT_ALLOWED_FILE,
+  CANNOT_UPLOAD_CLOUD_FILE,
+  CANNOT_DELETE_CLOUD_FILE,
+} from '@/util/variable';
+
 import widget from '../styles/components/uploadWidget.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export default function UploadWidget({ handleAlert, alertRef }) {
-  const [publicId, setPublicId] = useState([]);
-
+export default function UploadWidget({
+  handleAlert,
+  alertRef,
+  publicId,
+  addPublicId,
+  removePublicId,
+}) {
   const handleSuccess = (result) => {
     const { info } = result;
     handleAlert(null);
-    return setPublicId((prev) => [...prev, info.public_id]);
+    return addPublicId(info.public_id);
   };
   const handleError = (error, options) => {
     if (error.statusText.includes('File size')) {
-      handleAlert('파일 크기가 10MB를 초과합니다.');
+      handleAlert(EXCEED_FILE_SIZE);
     } else if (error.statusText.includes('Unsupported video format or file')) {
-      handleAlert(
-        '허용되지 않은 파일 형식입니다. 비디오 파일만 업로드 할 수 있습니다.',
-      );
+      handleAlert(NOT_ALLOWED_FILE);
     } else {
-      handleAlert('업로드 실패');
+      handleAlert(CANNOT_UPLOAD_CLOUD_FILE);
     }
     alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     options.close({ quiet: true });
@@ -34,11 +42,11 @@ export default function UploadWidget({ handleAlert, alertRef }) {
   const handleReplaceVideos = async (open) => {
     try {
       await deleteCloudData(publicId);
-      setPublicId([]);
+      removePublicId();
       open();
     } catch (error) {
       console.error('Failed to delete files:', error);
-      handleAlert('파일 삭제 실패');
+      handleAlert(CANNOT_DELETE_CLOUD_FILE);
       alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };

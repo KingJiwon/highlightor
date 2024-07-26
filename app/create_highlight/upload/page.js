@@ -2,9 +2,21 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { useSquad } from '@/hooks/SquadContext';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
+
+import { useSquad } from '@/hooks/SquadContext';
 import UploadWidget from '@/components/UploadWidget';
+import { uploadSquad } from '@/app/apis/upload';
+
+import {
+  TOO_MANY_PLAYER_IN_SQUAD,
+  TOO_MANY_PLAYER_IN_POSITION,
+  TOO_MANY_PLAYER_IN_GK,
+  CANNOT_UPLOAD_SQUAD,
+} from '@/util/variable';
+
 import upload from '../../../styles/pages/upload.module.scss';
 import 'next-cloudinary/dist/cld-video-player.css';
 
@@ -12,13 +24,22 @@ export default function Page() {
   const { squad, removePlayer } = useSquad();
 
   const [alert, setAlert] = useState(null);
+  const [publicId, setPublicId] = useState([]);
 
   const alertRef = useRef();
+  const session = useSession();
+  const router = useRouter();
 
   const squadLength = Object.values(squad).flat().length;
 
   const handleAlert = (message) => {
     setAlert(message);
+  };
+  const handleAddPublicId = (id) => {
+    setPublicId((prev) => [...prev, id]);
+  };
+  const handleRemovePublicId = () => {
+    setPublicId([]);
   };
 
   const handleRemove = (position, playerId) => {
@@ -29,19 +50,33 @@ export default function Page() {
     if (squadLength === 11) {
       e.preventDefault();
       alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert('스쿼드는 11명 이상으로 구성할 수 없습니다.');
+      return setAlert(TOO_MANY_PLAYER_IN_SQUAD);
     }
     if (squad[position].length === 5) {
       e.preventDefault();
       alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert('한 포지션에 5명 이상의 선수를 구성할 수 없습니다.');
+      return setAlert(TOO_MANY_PLAYER_IN_POSITION);
     }
     if (position === 'gk' && squad[position].length === 1) {
       e.preventDefault();
       alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert('GK 포지션은 최대 1명으로 구성 가능합니다.');
+      return setAlert(TOO_MANY_PLAYER_IN_GK);
     }
     return setAlert(null);
+  };
+
+  const submitSquad = async (e) => {
+    e.preventDefault();
+    try {
+      const { email } = session.data.user;
+      const res = await uploadSquad(squad, publicId, email);
+      const { insertedId } = res.data;
+      router.push(`/detail_highlight/${insertedId}`);
+    } catch (error) {
+      console.error('Failed to upload Squad:', error);
+      handleAlert(CANNOT_UPLOAD_SQUAD);
+      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   return (
@@ -114,11 +149,23 @@ export default function Page() {
             </div>
           ))}
           <div className={upload.highlight_container}>
-            <UploadWidget handleAlert={handleAlert} alertRef={alertRef} />
+            <UploadWidget
+              handleAlert={handleAlert}
+              alertRef={alertRef}
+              publicId={publicId}
+              addPublicId={handleAddPublicId}
+              removePublicId={handleRemovePublicId}
+            />
           </div>
-          <Link href={'/detail_highlight/1234'} className={upload.create_btn}>
-            <p>하이라이트 생성</p>
-          </Link>
+          <button
+            type="button"
+            className={upload.create_btn}
+            onClick={(e) => {
+              submitSquad(e);
+            }}
+          >
+            하이라이트 생성
+          </button>
         </div>
       </div>
     </>
