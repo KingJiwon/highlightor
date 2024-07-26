@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { CldUploadWidget, CldVideoPlayer } from 'next-cloudinary';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import axios from 'axios';
-
+import deleteCloudData from '@/app/apis/upload';
 import widget from '../styles/components/uploadWidget.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -33,11 +32,8 @@ export default function UploadWidget({ handleAlert, alertRef }) {
     options.close({ quiet: true });
   };
   const handleReplaceVideos = async (open) => {
-    console.log(publicId);
     try {
-      publicId.map((id) =>
-        axios.post('/api/upload/delete-cloudinary', { publicId: id }),
-      );
+      await deleteCloudData(publicId);
       setPublicId([]);
       open();
     } catch (error) {

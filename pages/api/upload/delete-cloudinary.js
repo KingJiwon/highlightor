@@ -9,12 +9,19 @@ cloudinary.config({
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { publicId } = req.body;
-    console.log(publicId);
+    console.log('Deleting:', publicId);
     try {
-      const result = await cloudinary.uploader.destroy(publicId);
+      const result = await cloudinary.uploader.destroy(publicId, {
+        resource_type: 'video',
+      });
+      console.log('Delete result:', result);
+      if (result.result === 'not found') {
+        return res.status(404).json({ error: 'File not found' });
+      }
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ error });
+      console.error('Delete error:', error);
+      return res.status(500).json({ error: error.message });
     }
   } else {
     res.setHeader('Allow', ['POST']);
