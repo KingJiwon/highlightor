@@ -33,6 +33,7 @@ export default function Page() {
   const squadLength = Object.values(squad).flat().length;
 
   const handleAlert = (message) => {
+    alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setAlert(message);
   };
   const handleAddPublicId = (id) => {
@@ -49,18 +50,15 @@ export default function Page() {
   const handleAdd = (e, position) => {
     if (squadLength === 11) {
       e.preventDefault();
-      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert(TOO_MANY_PLAYER_IN_SQUAD);
+      return handleAlert(TOO_MANY_PLAYER_IN_SQUAD);
     }
     if (squad[position].length === 5) {
       e.preventDefault();
-      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert(TOO_MANY_PLAYER_IN_POSITION);
+      return handleAlert(TOO_MANY_PLAYER_IN_POSITION);
     }
     if (position === 'gk' && squad[position].length === 1) {
       e.preventDefault();
-      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return setAlert(TOO_MANY_PLAYER_IN_GK);
+      return handleAlert(TOO_MANY_PLAYER_IN_GK);
     }
     return setAlert(null);
   };

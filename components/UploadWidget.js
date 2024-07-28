@@ -47,7 +47,6 @@ export default function UploadWidget({
     } catch (error) {
       console.error('Failed to delete files:', error);
       handleAlert(CANNOT_DELETE_CLOUD_FILE);
-      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
