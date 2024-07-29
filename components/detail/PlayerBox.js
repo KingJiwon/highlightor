@@ -35,10 +35,10 @@ export default function PlayerBox({ postData }) {
         {postData.squad[selectedPosition].map((player) => (
           <div key={player.id} className={playerBox.player}>
             <Image
-              width={130}
-              height={130}
+              width={120}
+              height={120}
               src={`${player.playerImg}`}
-              alt="선수 이미지"
+              alt={player.name}
             />
             <div className={playerBox.player_info}>
               <Image
@@ -46,6 +46,7 @@ export default function PlayerBox({ postData }) {
                 height={20}
                 className={playerBox.player_season}
                 src={`${player.seasonImg}`}
+                alt={player.className}
               />
               <p className={playerBox.player_name}>{player.name}</p>
             </div>

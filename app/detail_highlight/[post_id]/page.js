@@ -1,5 +1,6 @@
 import getPostData from '@/app/apis/post';
 import PlayerBox from '@/components/detail/PlayerBox';
+import SwiperHighlight from '@/components/SwiperHighlight';
 import detail from '../../../styles/pages/detail_highlight.module.scss';
 
 export default async function page(props) {
@@ -21,20 +22,8 @@ export default async function page(props) {
         </div>
         <div className={detail.content_container}>
           <PlayerBox postData={postData} />
-          <div className={detail.content_highlight_container}>
-            <img
-              className={detail.content_highlight_before}
-              src="/icon/normal/left.svg"
-            />
-            <img
-              className={detail.content_highlight}
-              src="/images/test/test_img.jpg"
-              alt="하이라이트 "
-            />
-            <img
-              className={detail.content_highlight_next}
-              src="/icon/normal/right.svg"
-            />
+          <div className={detail.highlight_container}>
+            <SwiperHighlight publicId={postData.publicId} />
           </div>
         </div>
       </div>

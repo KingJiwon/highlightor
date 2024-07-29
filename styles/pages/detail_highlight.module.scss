@@ -40,24 +40,17 @@
     }
   }
   .content_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 50px;
-    .content_highlight_container {
+    .highlight_container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 50px;
+      margin: 50px 0px;
       position: relative;
-      .content_highlight {
-        width: 800px;
-      }
-      .content_highlight_before {
-        position: absolute;
-        left: 40px;
-      }
-      .content_highlight_next {
-        position: absolute;
-        right: 40px;
-      }
+      width: 700px;
     }
   }
 }

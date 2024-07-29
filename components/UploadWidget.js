@@ -1,8 +1,6 @@
 'use cilent';
 
-import { CldUploadWidget, CldVideoPlayer } from 'next-cloudinary';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import { CldUploadWidget } from 'next-cloudinary';
 import { deleteCloudData } from '@/app/apis/upload';
 import {
   EXCEED_FILE_SIZE,
@@ -12,9 +10,7 @@ import {
 } from '@/util/variable';
 
 import widget from '../styles/components/uploadWidget.module.scss';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import SwiperHighlight from './SwiperHighlight';
 
 export default function UploadWidget({
   handleAlert,
@@ -53,29 +49,11 @@ export default function UploadWidget({
   return (
     <>
       <div className={widget.highlight_video_container}>
-        <Swiper
-          cssMode={true}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper"
-        >
-          {publicId.length !== 0 ? (
-            publicId.map((id) => (
-              <SwiperSlide key={id}>
-                <CldVideoPlayer
-                  src={id}
-                  aspectRatio="16:9"
-                  alt="Uploaded Image Not Found"
-                />
-              </SwiperSlide>
-            ))
-          ) : (
-            <div className={widget.highlight_video_empty}>HighLightor</div>
-          )}
-        </Swiper>
+        {publicId.length !== 0 ? (
+          <SwiperHighlight publicId={publicId} />
+        ) : (
+          <div className={widget.highlight_video_empty}>HighLightor</div>
+        )}
       </div>
       <CldUploadWidget
         signatureEndpoint="/api/upload/cloudinary-params"
