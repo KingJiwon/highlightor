@@ -1,5 +1,6 @@
 import '../styles/styles.scss';
 import Provider from '@/components/Provider';
+import Footer from '@/components/Footer';
 import Header from '../components/Header';
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default async function RootLayout({ children, modal }) {
         <Provider>
           <Header />
           {children} {modal}
+          <Footer />
         </Provider>
       </body>
     </html>
