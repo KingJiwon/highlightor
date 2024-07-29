@@ -28,6 +28,7 @@
         font-size: 15px;
         border: 1px solid include.$main-color-green;
         border-radius: 15px;
+        transition: all 0.15s linear;
       }
       .login_btn:hover {
         background-color: include.$main-color-green;

@@ -1,11 +1,12 @@
 import api from './index';
 
-const uploadSquad = async (squad, publicId, email) => {
+const uploadSquad = async (squad, publicId, email, nickname) => {
   try {
     const res = await api.post('/api/upload/uploadSquad', {
       squad,
       publicId,
       author: email,
+      nickname,
     });
     return res;
   } catch (err) {

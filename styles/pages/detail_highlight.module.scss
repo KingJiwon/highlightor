@@ -1,118 +1,62 @@
 @use '../include';
 
-.detail_container {
-  .detail_inner {
-    @include include.inner;
+.detail_inner {
+  @include include.inner;
 
-    .back_btn_container {
-      margin-top: 50px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      p {
-        font-family: include.$main-font-bold;
-        font-size: 16px;
-        margin-right: 5px;
-        cursor: pointer;
-      }
-      img {
-        height: 12px;
-        margin-right: 20px;
-      }
+  .back_btn_container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+      font-family: include.$main-font-bold;
+      font-size: 16px;
+      margin-right: 5px;
+      cursor: pointer;
     }
-    .title_container {
+    img {
+      height: 12px;
+      margin-right: 20px;
+    }
+  }
+  .title_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-family: include.$main-font-bold;
+    img {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+    }
+    .title_name {
+      font-size: 20px;
+      color: include.$main-color-green;
+      margin-right: 10px;
+    }
+    .title_info {
+      font-size: 15px;
+    }
+  }
+  .content_container {
+    margin-top: 50px;
+    .content_highlight_container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 30px;
-      font-family: include.$main-font-bold;
-      img {
-        width: 60px;
-        height: 60px;
-        margin-right: 15px;
-      }
-      .title_name {
-        font-size: 20px;
-        color: include.$main-color-green;
-        margin-right: 10px;
-      }
-      .title_info {
-        font-size: 15px;
-      }
-    }
-    .content_container {
       margin-top: 50px;
-      .content_player_container::before {
+      position: relative;
+      .content_highlight {
+        width: 800px;
+      }
+      .content_highlight_before {
         position: absolute;
-        z-index: -1;
-        content: ' ';
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        background-size: 500px;
-        background-position: center;
-        background-image: url('/icon/teams/arsenal.svg');
-        background-repeat: no-repeat;
-        opacity: 40%;
+        left: 40px;
       }
-      .content_player_container {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        .content_player_position {
-          display: flex;
-          justify-content: center;
-
-          font-family: include.$main-font-bold;
-          font-size: 25px;
-          p:first-child {
-            color: include.$main-color-green;
-          }
-          p {
-            margin: 0px 50px;
-          }
-        }
-        .content_player_list {
-          display: flex;
-          height: 500px;
-          margin-top: 70px;
-          justify-content: center;
-          align-items: center;
-          .content_player {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0px 20px;
-            img {
-              height: 130px;
-              width: 130px;
-            }
-            p {
-              margin-top: 10px;
-              font-size: 14px;
-              font-family: include.$main-font-medium;
-            }
-          }
-        }
-      }
-      .content_highlight_container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-        position: relative;
-        .content_highlight {
-          width: 800px;
-        }
-        .content_highlight_before {
-          position: absolute;
-          left: 40px;
-        }
-        .content_highlight_next {
-          position: absolute;
-          right: 40px;
-        }
+      .content_highlight_next {
+        position: absolute;
+        right: 40px;
       }
     }
   }

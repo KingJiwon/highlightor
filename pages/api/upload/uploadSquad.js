@@ -3,11 +3,11 @@ import { connectDB } from '@/util/database';
 export default async function upload(req, res) {
   if (req.method === 'POST') {
     const db = (await connectDB).db('highlightor');
-    const { squad, publicId, author } = req.body;
+    const { squad, publicId, author, nickname } = req.body;
     try {
       const result = await db
         .collection('squad_board')
-        .insertOne({ squad, publicId, author });
+        .insertOne({ squad, publicId, author, nickname });
       return res.status(200).json(result);
     } catch (err) {
       console.error(err);

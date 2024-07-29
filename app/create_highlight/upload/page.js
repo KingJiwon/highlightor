@@ -66,8 +66,8 @@ export default function Page() {
   const submitSquad = async (e) => {
     e.preventDefault();
     try {
-      const { email } = session.data.user;
-      const res = await uploadSquad(squad, publicId, email);
+      const { email, nickname } = session.data.user;
+      const res = await uploadSquad(squad, publicId, email, nickname);
       const { insertedId } = res.data;
       router.push(`/detail_highlight/${insertedId}`);
     } catch (error) {
