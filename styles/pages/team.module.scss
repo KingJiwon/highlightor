@@ -51,7 +51,7 @@
         font-family: include.$main-font-bold;
         position: absolute;
         bottom: 20px;
-        color: #222323;
+        color: include.$main-color-black;
         font-size: 20px;
         text-decoration: none;
       }
@@ -60,7 +60,7 @@
       background-color: include.$main-color-black;
       border: 2px solid include.$main-color-green;
       .team_name {
-        color: #ffffff;
+        color: include.$bg-color-white;
       }
     }
   }

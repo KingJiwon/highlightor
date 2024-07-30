@@ -17,10 +17,11 @@ import {
   CANNOT_UPLOAD_SQUAD,
 } from '@/util/variable';
 
-import upload from '../../../styles/pages/upload.module.scss';
+import upload from '@/styles/pages/upload.module.scss';
 import 'next-cloudinary/dist/cld-video-player.css';
 
-export default function Page() {
+export default function Page({ params }) {
+  const { league, team } = params;
   const { squad, removePlayer } = useSquad();
 
   const [alert, setAlert] = useState(null);
@@ -110,7 +111,7 @@ export default function Page() {
                     handleAdd(e, position);
                   }}
                   className={upload.player_add_btn}
-                  href={`/create_highlight/upload/search_modal/${position}`}
+                  href={`/create_highlight/upload/${league}/${team}/search_modal/${position}`}
                 >
                   선수 검색
                 </Link>
