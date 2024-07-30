@@ -24,13 +24,11 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    font-family: include.$main-font-bold;
     img {
-      width: 60px;
-      height: 60px;
       margin-right: 15px;
     }
     .title_name {
+      font-family: include.$main-font-bold;
       font-size: 20px;
       color: include.$main-color-green;
       margin-right: 10px;

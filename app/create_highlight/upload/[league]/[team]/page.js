@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -32,6 +32,14 @@ export default function Page({ params }) {
   const router = useRouter();
 
   const squadLength = Object.values(squad).flat().length;
+
+  useEffect(() => {
+    // 배경 이미지 설정
+    document.documentElement.style.setProperty(
+      '--background-image',
+      `url('/icon/teams/${league}/${team}.svg')`,
+    );
+  });
 
   const handleAlert = (message) => {
     alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -68,9 +76,16 @@ export default function Page({ params }) {
     e.preventDefault();
     try {
       const { email, nickname } = session.data.user;
-      const res = await uploadSquad(squad, publicId, email, nickname);
+      const res = await uploadSquad(
+        squad,
+        publicId,
+        email,
+        nickname,
+        league,
+        team,
+      );
       const { insertedId } = res.data;
-      router.push(`/detail_highlight/${insertedId}`);
+      router.push(`/detail_highlight/${league}/${team}/${insertedId}`);
     } catch (error) {
       console.error('Failed to upload Squad:', error);
       handleAlert(CANNOT_UPLOAD_SQUAD);
@@ -98,55 +113,58 @@ export default function Page({ params }) {
               </p>
             )}
           </div>
-          {Object.keys(squad).map((position, idx) => (
-            <div key={idx} className={upload.player_container}>
-              <div className={upload.player_container_left}>
-                <div
-                  className={`${upload.player_position} ${upload[position]}`}
-                >
-                  {position.toUpperCase()}
-                </div>
-                <Link
-                  onClick={(e) => {
-                    handleAdd(e, position);
-                  }}
-                  className={upload.player_add_btn}
-                  href={`/create_highlight/upload/${league}/${team}/search_modal/${position}`}
-                >
-                  선수 검색
-                </Link>
-              </div>
-              <div className={upload.player_container_right}>
-                {squad[position].map((player) => (
+          <div className={upload.player}>
+            {Object.keys(squad).map((position, idx) => (
+              <div key={idx} className={upload.player_container}>
+                <div className={upload.player_container_left}>
                   <div
-                    className={upload.player_info}
-                    key={player.name}
-                    onClick={() => {
-                      handleRemove(position, player.id);
-                    }}
+                    className={`${upload.player_position} ${upload[position]}`}
                   >
-                    <Image
-                      width={110}
-                      height={110}
-                      className={upload.player_img}
-                      src={player.playerImg}
-                      alt={player.name}
-                    />
-                    <div className={upload.player_text}>
-                      <Image
-                        width={25}
-                        height={20}
-                        className={upload.player_season}
-                        src={player.seasonImg}
-                        alt={player.className}
-                      />
-                      <p className={upload.player_name}>{player.name}</p>
-                    </div>
+                    {position.toUpperCase()}
                   </div>
-                ))}
+                  <Link
+                    onClick={(e) => {
+                      handleAdd(e, position);
+                    }}
+                    className={upload.player_add_btn}
+                    href={`/create_highlight/upload/${league}/${team}/search_modal/${position}`}
+                    scroll={false}
+                  >
+                    선수 검색
+                  </Link>
+                </div>
+                <div className={upload.player_container_right}>
+                  {squad[position].map((player) => (
+                    <div
+                      className={upload.player_info}
+                      key={player.name}
+                      onClick={() => {
+                        handleRemove(position, player.id);
+                      }}
+                    >
+                      <Image
+                        width={130}
+                        height={130}
+                        className={upload.player_img}
+                        src={player.playerImg}
+                        alt={player.name}
+                      />
+                      <div className={upload.player_text}>
+                        <Image
+                          width={25}
+                          height={20}
+                          className={upload.player_season}
+                          src={player.seasonImg}
+                          alt={player.className}
+                        />
+                        <p className={upload.player_name}>{player.name}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
           <div className={upload.highlight_container}>
             <UploadWidget
               handleAlert={handleAlert}

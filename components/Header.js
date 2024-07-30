@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-
 import header from '../styles/components/header.module.scss';
 
 export default function Header() {
@@ -43,12 +42,24 @@ export default function Header() {
         </div>
         <div className={header.nav_bar}>
           <ul>
-            <li>MY 하이라이트</li>
-            <li>Premier League</li>
-            <li>La Liga</li>
-            <li>SERIE A</li>
-            <li>Bundesliga</li>
-            <li>LIGUE 1</li>
+            <li>
+              <Link href={'/board_highlight'}>MY 하이라이트</Link>
+            </li>
+            <li>
+              <Link href={'/board_highlight/pl'}>Premier League</Link>
+            </li>
+            <li>
+              <Link href={'/board_highlight/laliga'}>La Liga</Link>
+            </li>
+            <li>
+              <Link href={'/board_highlight/serie'}>SERIE A</Link>
+            </li>
+            <li>
+              <Link href={'/board_highlight/bundes'}>Bundesliga</Link>
+            </li>
+            <li>
+              <Link href={'/board_highlight/ligue1'}>LIGUE 1</Link>
+            </li>
           </ul>
         </div>
       </div>

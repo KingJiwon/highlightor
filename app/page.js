@@ -103,22 +103,22 @@ export default function Home() {
           </div>
           <div className={main.user_highlight_teams}>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/arsenal.svg" />
+              <img src="/icon/teams/pl/아스널.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/chelsea.svg" />
+              <img src="/icon/teams/pl/첼시.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/liverpool.svg" />
+              <img src="/icon/teams/pl/리버풀.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/manchester-united.svg" />
+              <img src="/icon/teams/pl/맨체스터 유나이티드.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/tottenham.svg" />
+              <img src="/icon/teams/pl/토트넘 홋스퍼.svg" />
             </div>
             <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/manchester-city.svg" />
+              <img src="/icon/teams/pl/맨체스터 시티.svg" />
             </div>
           </div>
         </div>

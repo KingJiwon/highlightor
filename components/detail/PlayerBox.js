@@ -1,19 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import playerBox from '../../styles/components/detail/playerbox.module.scss';
 
-export default function PlayerBox({ postData }) {
+export default function PlayerBox({ postData, league, team }) {
   const [selectedPosition, setSelectedPosition] = useState('fw');
 
   const positions = ['fw', 'mf', 'df', 'gk'];
 
-  console.log(postData.squad[selectedPosition]);
-
   const handlePositionSelect = (position) => {
     setSelectedPosition(position);
   };
+
+  useEffect(() => {
+    // 배경 이미지 설정
+    document.documentElement.style.setProperty(
+      '--background-image',
+      `url('/icon/teams/${league}/${team}.svg')`,
+    );
+  });
   return (
     <div className={playerBox.player_container}>
       <div className={playerBox.position_container}>

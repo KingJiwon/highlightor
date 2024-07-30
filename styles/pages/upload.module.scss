@@ -24,23 +24,9 @@
 }
 .container {
   margin-top: 50px;
-  .inner::before {
-    position: absolute;
-    z-index: -1;
-    content: ' ';
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-size: 500px;
-    background-position: 50% 30%;
-    background-image: url('/icon/teams/pl/arsenal.svg');
-    background-repeat: no-repeat;
-    opacity: 40%;
-  }
+
   .inner {
     @include include.inner;
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,111 +46,128 @@
         color: include.$error-color-red;
       }
     }
-    .player_container {
-      box-sizing: content-box;
-      display: flex;
-      align-items: center;
-      height: 200px;
+    .player {
+      position: relative;
       width: 100%;
-      margin-top: 30px;
-      .player_container_left {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 170px;
-
-        .player_position {
-          font-family: include.$main-font-bold;
-          font-size: 22px;
-          margin: 30px 0px;
-        }
-        .player_position.fw {
-          color: #ff0000;
-        }
-        .player_position.mf {
-          color: #469719;
-        }
-        .player_position.df {
-          color: #468cff;
-        }
-        .player_position.gk {
-          color: #ffae44;
-        }
-        .player_add_btn {
-          font-family: include.$main-font-bold;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-family: include.$main-font-bold;
-          width: 110px;
-          height: 40px;
-          color: include.$main-color-green;
-          background-color: include.$main-color-black;
-          border: 1px solid include.$main-color-green;
-          border-radius: 20px;
-        }
-        .player_add_btn:hover {
-          cursor: pointer;
-          border: 1px solid include.$main-color-green;
-          background-color: include.$main-color-green;
-          color: include.$bg-color-white;
-          transition: all 0.15s linear;
-        }
-      }
-      .player_container_right {
-        width: 70%;
-        height: 170px;
+      .player_container {
+        box-sizing: content-box;
         display: flex;
         align-items: center;
-        padding-left: 30px;
-        .player_info {
-          position: relative;
-          margin: 0 15px;
+        height: 200px;
+        width: 100%;
+        margin-top: 30px;
+        .player_container_left {
+          width: 30%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          .player_text {
+          justify-content: center;
+          height: 170px;
+          .player_position {
+            font-family: include.$main-font-bold;
+            font-size: 22px;
+            margin: 30px 0px;
+          }
+          .player_position.fw {
+            color: #ff0000;
+          }
+          .player_position.mf {
+            color: #469719;
+          }
+          .player_position.df {
+            color: #468cff;
+          }
+          .player_position.gk {
+            color: #ffae44;
+          }
+          .player_add_btn {
+            font-family: include.$main-font-bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10px;
-            .player_season {
-              margin-right: 5px;
-            }
-            .player_name {
-              font-size: 15px;
-              font-family: include.$main-font-bold;
-            }
+            font-family: include.$main-font-bold;
+            width: 110px;
+            height: 40px;
+            color: include.$main-color-green;
+            background-color: include.$main-color-black;
+            border: 1px solid include.$main-color-green;
+            border-radius: 20px;
+          }
+          .player_add_btn:hover {
+            cursor: pointer;
+            border: 1px solid include.$main-color-green;
+            background-color: include.$main-color-green;
+            color: include.$bg-color-white;
+            transition: all 0.15s linear;
           }
         }
-        .player_info::after {
-          position: absolute;
-          content: '';
-          top: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-          background-color: inherit;
-          font-size: 40px;
-          color: #ffffff;
-          transition: all 0.15s linear;
-        }
-        .player_info:hover {
-          cursor: pointer;
-          &.player_info::after {
-            content: '-';
+        .player_container_right {
+          width: 70%;
+          height: 170px;
+          display: flex;
+          align-items: center;
+          padding-left: 30px;
+          .player_info {
+            position: relative;
+            margin: 0 15px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            background-color: rgba(
-              $color: include.$error-color-red,
-              $alpha: 0.7
-            );
+            .player_text {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 10px;
+              .player_season {
+                margin-right: 5px;
+              }
+              .player_name {
+                font-size: 15px;
+                font-family: include.$main-font-bold;
+              }
+            }
+          }
+          .player_info::after {
+            position: absolute;
+            content: '';
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            font-size: 40px;
+            color: #ffffff;
+            transition: all 0.15s linear;
+          }
+          .player_info:hover {
+            cursor: pointer;
+            &.player_info::after {
+              content: '-';
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: rgba(
+                $color: include.$error-color-red,
+                $alpha: 0.7
+              );
+            }
           }
         }
       }
+    }
+    .player::before {
+      position: absolute;
+      z-index: -1;
+      content: ' ';
+      top: 25%;
+      left: 30%;
+      width: 60%;
+      height: 60%;
+      background-position: 50%;
+      background-size: contain;
+      background-image: var(--background-image);
+      background-repeat: no-repeat;
+      opacity: 40%;
     }
     .highlight_container {
       margin: 40px 0px;
