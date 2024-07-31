@@ -13,16 +13,20 @@ export default async function page(props) {
     serie: '세리에 A',
   };
   const posts = await getLeaguePostData(league);
-  console.log(posts);
   return (
     <>
       <div className={board.title}>
-        <Image height={150} width={150} src={`/icon/league/${league}.svg`} />
+        <Image
+          alt={`${league}로고`}
+          height={150}
+          width={150}
+          src={`/icon/league/${league}.svg`}
+        />
         <p>{leagueObj[league]} 하이라이트</p>
       </div>
       <div className={board.board_container}>
         <div className={board.inner}>
-          {posts.map((el) => {
+          {posts?.map((el) => {
             const videoLength = el.publicId.length;
             return (
               <BoardCard
@@ -32,6 +36,7 @@ export default async function page(props) {
                 teamName={el.teamName}
                 league={league}
                 videoLength={videoLength}
+                squad={el.squad}
               />
             );
           })}

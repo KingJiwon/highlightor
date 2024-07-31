@@ -15,7 +15,7 @@ export default function page() {
       <div className={league.selector_container}>
         <div className={league.selector_inner}>
           <Link href={'/create_highlight/pl'} className={league.selector_pl}>
-            <img src="/icon/league/premierleague.svg" />
+            <img src="/icon/league/pl.svg" />
           </Link>
           <Link
             href={'/create_highlight/laliga'}
@@ -33,13 +33,13 @@ export default function page() {
             href={'/create_highlight/bundes'}
             className={league.selector_bundes}
           >
-            <img src="/icon/league/bundesliga.svg" />
+            <img src="/icon/league/bundes.svg" />
           </Link>
           <Link
             href={'/create_highlight/serie'}
             className={league.selector_serie}
           >
-            <img src="/icon/league/serie_a.svg" />
+            <img src="/icon/league/serie.svg" />
           </Link>
           <Link
             href={'/create_highlight/international'}
