@@ -4,7 +4,7 @@ import signup from '@/styles/components/modal/signupModal.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import generalLogin from '@/app/apis/user';
+import { generalLogin } from '@/app/apis/user';
 import {
   nicknameValidation,
   emailValidation,
