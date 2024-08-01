@@ -104,7 +104,7 @@ export default function Signup() {
     };
     const res = await generalLogin(info);
 
-    if (res.data.err) return setError(res.data.err);
+    if (res.data?.err) return setError(res.data.err);
     // error 없으면 모달로 push
     return router.push(
       `/alert/?status=${res.status}&message=${res.data}`,

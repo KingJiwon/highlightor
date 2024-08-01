@@ -26,8 +26,13 @@ export default async function signup(req, res) {
         return res.status(409).json({ err: '이미 가입 된 이메일입니다.' });
       }
       const hash = await bcrypt.hash(req.body.password, 10);
-      req.body.password = hash;
-      await db.collection('user_cred').insertOne(req.body);
+      const userData = {
+        nickname,
+        email,
+        password: hash,
+        up_post: [], // 빈 배열 추가
+      };
+      await db.collection('user_cred').insertOne(userData);
       return res.status(200).send('가입이 완료되었습니다!');
     } catch (err) {
       console.error(err);

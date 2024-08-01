@@ -3,7 +3,7 @@ import BtnUp from '@/components/detail/Btnup';
 import PlayerBox from '@/components/detail/PlayerBox';
 import SwiperHighlight from '@/components/SwiperHighlight';
 import { getServerSession } from 'next-auth';
-import { getSessionUser } from '@/app/apis/user';
+
 import detail from '@/styles/pages/detail_highlight.module.scss';
 
 import Image from 'next/image';
@@ -14,7 +14,6 @@ export default async function page(props) {
   const postData = await getPostData(postId);
   const teamName = decodeURIComponent(team);
   const session = await getServerSession(authOptions);
-  const sessionUserInfo = await getSessionUser(session?.user.email);
 
   return (
     <>
@@ -40,11 +39,7 @@ export default async function page(props) {
             {postData.nickname}님의 {teamName} 하이라이트
           </p>
           <p className={detail.title_info}>추천10 조회29</p>
-          {session ? (
-            <BtnUp sessionUserInfo={sessionUserInfo} postId={postId} />
-          ) : (
-            <></>
-          )}
+          {session ? <BtnUp postId={postId} session={session} /> : <></>}
         </div>
         <div className={detail.content_container}>
           <PlayerBox postData={postData} league={league} team={team} />
