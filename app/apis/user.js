@@ -18,12 +18,12 @@ const getSessionUser = async (email) => {
   }
 };
 
-const updateUserUpPost = async (userEmail, postId, isUpPost) => {
+const updateUserUpPost = async (userEmail, postId, isAlreadyUp) => {
   try {
     const res = await api.patch('/api/user/upList', {
       userEmail,
       postId,
-      isUpPost,
+      isAlreadyUp,
     });
     return res.status;
   } catch (err) {

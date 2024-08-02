@@ -5,10 +5,18 @@ export default async function upload(req, res) {
     const db = (await connectDB).db('highlightor');
     const { squad, publicId, author, nickname, league, team } = req.body;
     const teamName = decodeURIComponent(team);
+    const postInfo = {
+      squad,
+      publicId,
+      author,
+      nickname,
+      league,
+      teamName,
+      up: 0,
+      view: 0,
+    };
     try {
-      const result = await db
-        .collection('squad_board')
-        .insertOne({ squad, publicId, author, nickname, league, teamName });
+      const result = await db.collection('squad_board').insertOne(postInfo);
       return res.status(200).json(result);
     } catch (err) {
       console.error(err);

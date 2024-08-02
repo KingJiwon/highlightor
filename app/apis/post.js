@@ -18,4 +18,32 @@ const getLeaguePostData = async (league) => {
   }
 };
 
-export { getPostData, getLeaguePostData };
+const updatePostUpCount = async (postId, isAlreadyUp) => {
+  try {
+    const res = await api.patch('api/post/patchUpCount', {
+      postId,
+      isAlreadyUp,
+    });
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const updatePostViewCount = async (postId) => {
+  try {
+    const res = await api.patch('api/post/patchViewCount', {
+      postId,
+    });
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export {
+  getPostData,
+  getLeaguePostData,
+  updatePostUpCount,
+  updatePostViewCount,
+};

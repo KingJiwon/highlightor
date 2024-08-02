@@ -3,9 +3,9 @@ import { connectDB } from '@/util/database';
 export default async function getSessionUser(req, res) {
   const db = (await connectDB).db('highlightor');
   if (req.method === 'PATCH') {
-    const { userEmail, postId, isUpPost } = req.body;
+    const { userEmail, postId, isAlreadyUp } = req.body;
     try {
-      const result = isUpPost // 게시물 up 상태
+      const result = isAlreadyUp // 게시물 up 상태
         ? await db
             .collection('user_cred')
             .updateOne(

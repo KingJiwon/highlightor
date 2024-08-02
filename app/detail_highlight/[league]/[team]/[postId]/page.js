@@ -1,19 +1,18 @@
 import { getPostData } from '@/app/apis/post';
-import BtnUp from '@/components/detail/Btnup';
+import Info from '@/components/detail/Info';
 import PlayerBox from '@/components/detail/PlayerBox';
 import SwiperHighlight from '@/components/SwiperHighlight';
-import { getServerSession } from 'next-auth';
 
 import detail from '@/styles/pages/detail_highlight.module.scss';
 
 import Image from 'next/image';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
+
+export const dynamic = 'force-dynamic';
 
 export default async function page(props) {
   const { league, team, postId } = props.params;
   const postData = await getPostData(postId);
   const teamName = decodeURIComponent(team);
-  const session = await getServerSession(authOptions);
 
   return (
     <>
@@ -38,8 +37,7 @@ export default async function page(props) {
           <p className={detail.title_name}>
             {postData.nickname}님의 {teamName} 하이라이트
           </p>
-          <p className={detail.title_info}>추천10 조회29</p>
-          {session ? <BtnUp postId={postId} session={session} /> : <></>}
+          <Info postId={postId} />
         </div>
         <div className={detail.content_container}>
           <PlayerBox postData={postData} league={league} team={team} />
