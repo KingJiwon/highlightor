@@ -9,6 +9,15 @@ const getPostData = async (postId) => {
   }
 };
 
+const getTopPosts = async () => {
+  try {
+    const res = await api.get('/api/post/getTopPosts');
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+};
+
 const getLeaguePostData = async (league) => {
   try {
     const res = await api.get(`/api/post/league/${league}`);
@@ -46,4 +55,5 @@ export {
   getLeaguePostData,
   updatePostUpCount,
   updatePostViewCount,
+  getTopPosts,
 };

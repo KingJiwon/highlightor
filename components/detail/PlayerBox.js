@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import playerBox from '../../styles/components/detail/playerbox.module.scss';
 
-export default function PlayerBox({ postData, league, team }) {
+export default function PlayerBox({ postData, league, team, uniqueClass }) {
   const [selectedPosition, setSelectedPosition] = useState('fw');
 
   const positions = ['fw', 'mf', 'df', 'gk'];
@@ -37,7 +37,7 @@ export default function PlayerBox({ postData, league, team }) {
           </p>
         ))}
       </div>
-      <div className={playerBox.player_list}>
+      <div className={`${playerBox.player_list} ${uniqueClass}`}>
         {postData.squad[selectedPosition].map((player) => (
           <div key={player.id} className={playerBox.player}>
             <Image

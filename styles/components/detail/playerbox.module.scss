@@ -28,6 +28,7 @@
   .player_list {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     height: 500px;
     width: 640px;
     margin-top: 70px;
@@ -53,7 +54,13 @@
         }
       }
     }
+    &.popular {
+      width: 640px;
+      margin-top: 0px;
+      height: 300px;
+    }
   }
+
   .player_list::before {
     position: absolute;
     z-index: -1;
