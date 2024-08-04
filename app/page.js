@@ -1,18 +1,13 @@
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 import PopularHighlight from '@/components/main/PopularHighlight';
 import MyHighLight from '@/components/main/MyHighLight';
 import { getTopPosts } from '@/app/apis/post';
-import { getUserHighlight } from './apis/user';
 
 import main from '../styles/pages/main.module.scss';
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
   const topPosts = await getTopPosts();
-  const userTeam = await getUserHighlight(session.user.email);
 
   return (
     <div className={main.main_container}>
@@ -32,7 +27,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <MyHighLight name={session.user.nickname} userTeam={userTeam} />
+      <MyHighLight />
     </div>
   );
 }

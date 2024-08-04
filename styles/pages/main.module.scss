@@ -50,57 +50,13 @@
       border-radius: 15px;
       border: 1px solid include.$main-color-green;
       text-decoration: none;
+      transition: all 0.15s linear;
     }
     .create_highlight_btn:hover {
       cursor: pointer;
       background-color: include.$main-color-green;
       color: #222323;
       border-radius: 15px;
-    }
-  }
-  .user_highlight_container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    width: 100vw;
-    background-color: include.$bg-color-gray;
-    .user_highlight_inner {
-      @include include.inner;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0px;
-      .user_highlight_header {
-        width: 100%;
-        p {
-          margin-left: 20px;
-          font-size: 20px;
-          color: include.$main-color-green;
-          font-family: include.$main-font-bold;
-        }
-      }
-      .user_highlight_teams {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        width: 500px;
-        margin-top: 40px;
-        .user_highlight_teams_logo {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 30%;
-          padding: 20px 0;
-          img {
-            width: 70px;
-            height: 70px;
-          }
-        }
-        .user_highlight_teams_logo:hover {
-          cursor: pointer;
-          background-color: include.$main-color-black;
-        }
-      }
     }
   }
 }
