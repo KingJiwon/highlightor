@@ -3,13 +3,17 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 import PopularHighlight from '@/components/main/PopularHighlight';
+import MyHighLight from '@/components/main/MyHighLight';
 import { getTopPosts } from '@/app/apis/post';
+import { getUserHighlight } from './apis/user';
 
 import main from '../styles/pages/main.module.scss';
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
   const topPosts = await getTopPosts();
+  const userTeam = await getUserHighlight(session.user.email);
+
   return (
     <div className={main.main_container}>
       <div className={main.popular_highlight_container}>
@@ -28,33 +32,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className={main.user_highlight_container}>
-        <div className={main.user_highlight_inner}>
-          <div className={main.user_highlight_header}>
-            <p>{session?.user.nickname}님의 하이라이트</p>
-          </div>
-          <div className={main.user_highlight_teams}>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/아스널.svg" />
-            </div>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/첼시.svg" />
-            </div>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/리버풀.svg" />
-            </div>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/맨체스터 유나이티드.svg" />
-            </div>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/토트넘 홋스퍼.svg" />
-            </div>
-            <div className={main.user_highlight_teams_logo}>
-              <img src="/icon/teams/pl/맨체스터 시티.svg" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <MyHighLight name={session.user.nickname} userTeam={userTeam} />
     </div>
   );
 }

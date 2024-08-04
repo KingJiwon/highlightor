@@ -15,7 +15,6 @@ import 'swiper/css/pagination';
 import 'next-cloudinary/dist/cld-video-player.css';
 
 export default function PopularHighlight({ topPosts }) {
-  console.log(topPosts);
   return (
     <Swiper
       direction={'vertical'}

@@ -31,4 +31,13 @@ const updateUserUpPost = async (userEmail, postId, isAlreadyUp) => {
   }
 };
 
-export { generalLogin, getSessionUser, updateUserUpPost };
+const getUserHighlight = async (email) => {
+  try {
+    const res = await api.get(`/api/user/getUserHighlight/${email}`);
+    return res.data;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export { generalLogin, getSessionUser, updateUserUpPost, getUserHighlight };
