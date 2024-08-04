@@ -50,10 +50,24 @@ const updatePostViewCount = async (postId) => {
   }
 };
 
+const modifyPostData = async (postId, squad, publicId) => {
+  try {
+    const res = await api.patch('api/post/modifyPostData', {
+      postId,
+      squad,
+      publicId,
+    });
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export {
   getPostData,
   getLeaguePostData,
   updatePostUpCount,
   updatePostViewCount,
   getTopPosts,
+  modifyPostData,
 };

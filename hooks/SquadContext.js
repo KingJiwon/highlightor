@@ -30,7 +30,7 @@ export default function SquadProvider({ children }) {
   };
 
   return (
-    <SquadContext.Provider value={{ squad, addPlayer, removePlayer }}>
+    <SquadContext.Provider value={{ squad, addPlayer, removePlayer, setSquad }}>
       {children}
     </SquadContext.Provider>
   );

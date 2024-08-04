@@ -6,6 +6,7 @@ import SwiperHighlight from '@/components/SwiperHighlight';
 import detail from '@/styles/pages/detail_highlight.module.scss';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,15 +18,39 @@ export default async function page(props) {
   return (
     <>
       <div className={detail.detail_inner}>
-        <div className={detail.back_btn_container}>
-          <p>목록으로</p>
-          <Image
-            alt="목록으로"
-            height={12}
-            width={12}
-            src="/icon/normal/right.svg"
-          />
+        <div className={detail.btn_container}>
+          <Link
+            className={detail.btn_modify}
+            href={`/modify_highlight/${postId}`}
+          >
+            <Image
+              alt="수정"
+              width={15}
+              height={15}
+              src={'/icon/normal/edit.svg'}
+            />
+            <p>수정</p>
+          </Link>
+          <Link className={detail.btn_delete} href={'/'}>
+            <Image
+              alt="삭제"
+              width={15}
+              height={15}
+              src={'/icon/normal/trash.svg'}
+            />
+            <p>삭제</p>
+          </Link>
+          <Link className={detail.btn_back} href={`/board_highlight/${league}`}>
+            <p>목록으로</p>
+            <Image
+              alt="목록으로"
+              height={12}
+              width={12}
+              src="/icon/normal/right.svg"
+            />
+          </Link>
         </div>
+
         <div className={detail.title_container}>
           <Image
             width={60}
