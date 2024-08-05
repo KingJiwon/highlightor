@@ -33,20 +33,26 @@ export default function MyHighLight() {
             <p>{session?.user.nickname}님의 하이라이트</p>
           </div>
           <div className={myhighlight.teams}>
-            {userTeam.map((team) => {
-              const { league, teamName, _id } = team;
-              const url = `detail_highlight/${league}/${teamName}/${_id}`;
-              return (
-                <Link key={_id} href={url} className={myhighlight.teams_logo}>
-                  <Image
-                    width={70}
-                    height={70}
-                    alt={team}
-                    src={`/icon/teams/${league}/${teamName}.svg`}
-                  />
-                </Link>
-              );
-            })}
+            {userTeam.length === 0 ? (
+              <div className={myhighlight.teams_empty}>
+                하이라이트를 생성하고 내 하이라이트를 확인해보세요!
+              </div>
+            ) : (
+              userTeam.map((team) => {
+                const { league, teamName, _id } = team;
+                const url = `detail_highlight/${league}/${teamName}/${_id}`;
+                return (
+                  <Link key={_id} href={url} className={myhighlight.teams_logo}>
+                    <Image
+                      width={70}
+                      height={70}
+                      alt={team}
+                      src={`/icon/teams/${league}/${teamName}.svg`}
+                    />
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       ) : (

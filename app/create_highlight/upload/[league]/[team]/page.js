@@ -75,6 +75,12 @@ export default function Page({ params }) {
   const submitSquad = async (e) => {
     e.preventDefault();
     try {
+      if (squadLength === 0) {
+        return handleAlert('1명 이상의 선수를 선택 해주세요.');
+      }
+      if (publicId.length === 0) {
+        return handleAlert('하이라이트 영상을 1개 이상 업로드 해주세요.');
+      }
       const { email, nickname } = session.data.user;
       const res = await uploadSquad(
         squad,
@@ -85,11 +91,14 @@ export default function Page({ params }) {
         team,
       );
       const { insertedId } = res.data;
-      router.push(`/detail_highlight/${league}/${team}/${insertedId}`);
+      return router.push(`/detail_highlight/${league}/${team}/${insertedId}`);
     } catch (error) {
       console.error('Failed to upload Squad:', error);
       handleAlert(CANNOT_UPLOAD_SQUAD);
-      alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return alertRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
     }
   };
 

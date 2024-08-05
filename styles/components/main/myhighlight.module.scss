@@ -28,6 +28,13 @@
       justify-content: space-between;
       width: 500px;
       margin-top: 40px;
+      .teams_empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        font-size: 18px;
+      }
       .teams_logo {
         display: flex;
         justify-content: center;
