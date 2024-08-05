@@ -10,7 +10,7 @@ import {
 } from '@/util/variable';
 
 import widget from '../styles/components/uploadWidget.module.scss';
-import SwiperHighlight from './SwiperHighlight';
+import SwiperHighlight from './detail/SwiperHighlight';
 
 export default function UploadWidget({
   handleAlert,

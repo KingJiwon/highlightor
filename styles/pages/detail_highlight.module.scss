@@ -8,8 +8,13 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    a {
+    a,
+    button {
       display: flex;
+      align-items: center;
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
       p {
         color: include.$main-color-black;
         font-family: include.$main-font-bold;
@@ -53,6 +58,7 @@
       margin: 50px 0px;
       position: relative;
       width: 700px;
+      height: 400px;
     }
   }
 }

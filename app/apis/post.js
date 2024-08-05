@@ -63,6 +63,15 @@ const modifyPostData = async (postId, squad, publicId) => {
   }
 };
 
+const deletePostData = async (postId) => {
+  try {
+    const res = await api.delete(`api/post/deletePostData/${postId}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export {
   getPostData,
   getLeaguePostData,
@@ -70,4 +79,5 @@ export {
   updatePostViewCount,
   getTopPosts,
   modifyPostData,
+  deletePostData,
 };

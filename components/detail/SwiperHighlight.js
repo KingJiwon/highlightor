@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'next-cloudinary/dist/cld-video-player.css';
+import swiperHighlight from '@/styles/components/detail/swiperHighlight.module.scss';
 
 export default function SwiperHighlight({ publicId }) {
   return (
@@ -18,7 +19,7 @@ export default function SwiperHighlight({ publicId }) {
       mousewheel={true}
       keyboard={true}
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-      className="mySwiper"
+      className={swiperHighlight.mySwiper}
     >
       {publicId.map((id) => (
         <SwiperSlide key={id}>

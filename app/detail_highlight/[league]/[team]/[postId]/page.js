@@ -1,7 +1,8 @@
 import { getPostData } from '@/app/apis/post';
+import DeleteBtn from '@/components/detail/DeleteBtn';
 import Info from '@/components/detail/Info';
 import PlayerBox from '@/components/detail/PlayerBox';
-import SwiperHighlight from '@/components/SwiperHighlight';
+import SwiperHighlight from '@/components/detail/SwiperHighlight';
 
 import detail from '@/styles/pages/detail_highlight.module.scss';
 
@@ -31,15 +32,7 @@ export default async function page(props) {
             />
             <p>수정</p>
           </Link>
-          <Link className={detail.btn_delete} href={'/'}>
-            <Image
-              alt="삭제"
-              width={15}
-              height={15}
-              src={'/icon/normal/trash.svg'}
-            />
-            <p>삭제</p>
-          </Link>
+          <DeleteBtn postId={postId} publicId={postData.publicId} />
           <Link className={detail.btn_back} href={`/board_highlight/${league}`}>
             <p>목록으로</p>
             <Image
