@@ -101,7 +101,9 @@ export default function Page({ params }) {
       });
     }
   };
-
+  if (!session.data) {
+    return <div>권한이 없습니다.</div>;
+  }
   return (
     <>
       <div className={upload.discriptor_container}>

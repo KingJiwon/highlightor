@@ -27,7 +27,7 @@ export default function Header() {
               </Link>
             </div>
           ) : (
-            <Link href={'/login'} className={header.login_btn}>
+            <Link href={'/login'} scroll={false} className={header.login_btn}>
               로그인
             </Link>
           )}

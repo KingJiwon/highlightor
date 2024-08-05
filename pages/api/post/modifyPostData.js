@@ -19,10 +19,6 @@ export default async function fetchPost(req, res) {
           { $set: { squad, publicId } },
         );
 
-      if (result.matchedCount === 0) {
-        res.status(404).json({ error: 'Post not found' });
-      }
-
       res.status(200).json({ modifiedCount: result.modifiedCount });
     } catch (err) {
       console.error(err);

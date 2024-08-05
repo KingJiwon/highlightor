@@ -16,10 +16,12 @@ import {
   TOO_MANY_PLAYER_IN_GK,
   CANNOT_PULL_DATA,
   CANNOT_MODIFY_SQUAD,
+  NOT_CHANGE,
 } from '@/util/variable';
 
 import upload from '@/styles/pages/upload.module.scss';
 import 'next-cloudinary/dist/cld-video-player.css';
+import { useSession } from 'next-auth/react';
 
 export default function Page({ params }) {
   const { postId } = params;
@@ -31,29 +33,9 @@ export default function Page({ params }) {
 
   const alertRef = useRef();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const squadLength = Object.values(squad).flat().length;
-
-  useEffect(() => {
-    const fetchPostData = async () => {
-      try {
-        const result = await getPostData(postId);
-        const decodeTeamName = decodeURIComponent(result.teamName);
-        setSquad(result.squad);
-        setPublicId(result.publicId);
-        setSquadInfo({ league: result.league, teamName: decodeTeamName });
-        // 배경 이미지 설정
-        document.documentElement.style.setProperty(
-          '--background-image',
-          `url('/icon/teams/${result.league}/${decodeTeamName}.svg')`,
-        );
-      } catch (error) {
-        setAlert(CANNOT_PULL_DATA);
-      }
-    };
-
-    fetchPostData();
-  }, []);
 
   const handleAlert = (message) => {
     alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -90,7 +72,9 @@ export default function Page({ params }) {
     e.preventDefault();
     try {
       const res = await modifyPostData(postId, squad, publicId);
-
+      if (res.modifiedCount === 0) {
+        handleAlert(NOT_CHANGE);
+      }
       if (res.modifiedCount === 1) {
         router.push(
           `/detail_highlight/${squadInfo.league}/${squadInfo.teamName}/${postId}`,
@@ -104,6 +88,33 @@ export default function Page({ params }) {
     }
   };
 
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const result = await getPostData(postId);
+        const decodeTeamName = decodeURIComponent(result.teamName);
+        setSquad(result.squad);
+        setPublicId(result.publicId);
+        setSquadInfo({
+          league: result.league,
+          teamName: decodeTeamName,
+          author: result.author,
+        });
+        // 배경 이미지 설정
+        document.documentElement.style.setProperty(
+          '--background-image',
+          `url('/icon/teams/${result.league}/${decodeTeamName}.svg')`,
+        );
+      } catch (error) {
+        setAlert(CANNOT_PULL_DATA);
+      }
+    };
+
+    fetchPostData();
+  }, []);
+  if (!session || squadInfo.author !== session.user.email) {
+    return <div>권한이 없습니다.</div>;
+  }
   return (
     <>
       <div className={upload.discriptor_container}>

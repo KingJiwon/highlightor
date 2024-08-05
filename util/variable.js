@@ -1,6 +1,6 @@
 // signup
 const INVALID_EMAIL = '알맞은 형식의 메일주소를 입력해주세요';
-const VALID_EMAIL = '이메일 인증을 진행해주세요';
+const VALID_EMAIL = '알맞은 형식의 메일 주소입니다.';
 const INVALID_PASSWORD =
   '비밀번호는 8자이상 특수문자, 영문자, 숫자가 포함되어야 합니다.';
 const VALID_PASSWORD = '사용가능한 비밀번호입니다.';
@@ -28,6 +28,7 @@ const CANNOT_UPLOAD_SQUAD = '오류로 인해 스쿼드를 업로드하지 못�
 // modify
 const CANNOT_PULL_DATA = '데이터를 가져오는데 실패했습니다. 다시 시도해주세요';
 const CANNOT_MODIFY_SQUAD = '오류로 인해 스쿼드를 수정할 수 없습니다.';
+const NOT_CHANGE = '변경된 사항이 없습니다.';
 
 export {
   INVALID_EMAIL,
@@ -50,4 +51,5 @@ export {
   CANNOT_UPLOAD_SQUAD,
   CANNOT_PULL_DATA,
   CANNOT_MODIFY_SQUAD,
+  NOT_CHANGE,
 };
