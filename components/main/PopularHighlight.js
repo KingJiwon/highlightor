@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { CldVideoPlayer } from 'next-cloudinary';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Pagination } from 'swiper/modules';
+import { useEffect, useState } from 'react';
+import { getTopPosts } from '@/app/apis/post';
 import PlayerBox from '../detail/PlayerBox';
 
 import 'swiper/css';
@@ -14,7 +16,20 @@ import 'swiper/css/pagination';
 
 import 'next-cloudinary/dist/cld-video-player.css';
 
-export default function PopularHighlight({ topPosts }) {
+export default function PopularHighlight() {
+  const [topPosts, setTopPosts] = useState([]);
+  useEffect(() => {
+    const fetchTopPosts = async () => {
+      try {
+        const posts = await getTopPosts(); // API 호출
+        setTopPosts(posts); // 상태 업데이트
+      } catch (error) {
+        console.error('Failed to fetch top posts:', error);
+      }
+    };
+
+    fetchTopPosts();
+  }, []);
   return (
     <Swiper
       direction={'vertical'}
