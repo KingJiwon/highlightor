@@ -35,28 +35,5 @@
       justify-content: center;
       margin-top: 70px;
     }
-
-    .create_highlight_btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      top: 0;
-      width: 200px;
-      height: 50px;
-      font-family: include.$main-font-bold;
-      font-size: 16px;
-      background-color: include.$main-color-black;
-      color: include.$main-color-green;
-      border-radius: 15px;
-      border: 1px solid include.$main-color-green;
-      text-decoration: none;
-      transition: all 0.15s linear;
-    }
-    .create_highlight_btn:hover {
-      cursor: pointer;
-      background-color: include.$main-color-green;
-      color: #222323;
-      border-radius: 15px;
-    }
   }
 }
