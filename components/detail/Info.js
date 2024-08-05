@@ -18,7 +18,7 @@ export default function Info({ postId }) {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const userEmail = session?.user?.email;
-  console.log(session);
+
   useEffect(() => {
     const fetchUserUpPosts = async () => {
       if (userEmail) {

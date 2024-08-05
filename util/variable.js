@@ -24,6 +24,11 @@ const NOT_ALLOWED_FILE =
 const CANNOT_DELETE_CLOUD_FILE = '파일 삭제 실패';
 const CANNOT_UPLOAD_CLOUD_FILE = '업로드 실패';
 const CANNOT_UPLOAD_SQUAD = '오류로 인해 스쿼드를 업로드하지 못했습니다.';
+
+// modify
+const CANNOT_PULL_DATA = '데이터를 가져오는데 실패했습니다. 다시 시도해주세요';
+const CANNOT_MODIFY_SQUAD = '오류로 인해 스쿼드를 수정할 수 없습니다.';
+
 export {
   INVALID_EMAIL,
   VALID_EMAIL,
@@ -43,4 +48,6 @@ export {
   CANNOT_UPLOAD_CLOUD_FILE,
   CANNOT_DELETE_CLOUD_FILE,
   CANNOT_UPLOAD_SQUAD,
+  CANNOT_PULL_DATA,
+  CANNOT_MODIFY_SQUAD,
 };

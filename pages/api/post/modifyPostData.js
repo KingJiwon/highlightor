@@ -12,10 +12,12 @@ export default async function fetchPost(req, res) {
     }
 
     try {
-      const result = await db.collection('squad_board').updateOne(
-        { _id: new ObjectId(postId) },
-        { $set: { squad, publicId } }, // no need for template literals here
-      );
+      const result = await db
+        .collection('squad_board')
+        .updateOne(
+          { _id: new ObjectId(postId) },
+          { $set: { squad, publicId } },
+        );
 
       if (result.matchedCount === 0) {
         res.status(404).json({ error: 'Post not found' });

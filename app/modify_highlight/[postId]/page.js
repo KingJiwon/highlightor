@@ -14,7 +14,8 @@ import {
   TOO_MANY_PLAYER_IN_SQUAD,
   TOO_MANY_PLAYER_IN_POSITION,
   TOO_MANY_PLAYER_IN_GK,
-  CANNOT_UPLOAD_SQUAD,
+  CANNOT_PULL_DATA,
+  CANNOT_MODIFY_SQUAD,
 } from '@/util/variable';
 
 import upload from '@/styles/pages/upload.module.scss';
@@ -24,6 +25,7 @@ export default function Page({ params }) {
   const { postId } = params;
   const { squad, setSquad, removePlayer } = useSquad();
 
+  const [squadInfo, setSquadInfo] = useState({});
   const [alert, setAlert] = useState(null);
   const [publicId, setPublicId] = useState([]);
 
@@ -37,16 +39,16 @@ export default function Page({ params }) {
       try {
         const result = await getPostData(postId);
         const decodeTeamName = decodeURIComponent(result.teamName);
-        console.log(result);
         setSquad(result.squad);
         setPublicId(result.publicId);
+        setSquadInfo({ league: result.league, teamName: decodeTeamName });
         // 배경 이미지 설정
         document.documentElement.style.setProperty(
           '--background-image',
           `url('/icon/teams/${result.league}/${decodeTeamName}.svg')`,
         );
       } catch (error) {
-        setAlert('데이터를 가져오는데 실패했습니다. 다시 시도해주세요');
+        setAlert(CANNOT_PULL_DATA);
       }
     };
 
@@ -88,11 +90,16 @@ export default function Page({ params }) {
     e.preventDefault();
     try {
       const res = await modifyPostData(postId, squad, publicId);
-      const { insertedId, league, team } = res.data;
-      router.push(`/detail_highlight/${league}/${team}/${insertedId}`);
+
+      if (res.modifiedCount === 1) {
+        router.push(
+          `/detail_highlight/${squadInfo.league}/${squadInfo.teamName}/${postId}`,
+        );
+      }
+      // router.push(`/detail_highlight/${league}/${team}/${insertedId}`);
     } catch (error) {
       console.error('Failed to upload Squad:', error);
-      handleAlert(CANNOT_UPLOAD_SQUAD);
+      handleAlert(CANNOT_MODIFY_SQUAD);
       alertRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
