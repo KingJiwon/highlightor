@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { MongoClient } from 'mongodb';
 
-const url = process.env.NEXT_PUBLIC_MONGO_CODE;
+const url = process.env.MONGODB_URI;
 const options = { useNewUrlParser: true };
 // eslint-disable-next-line import/no-mutable-exports
 let connectDB;
