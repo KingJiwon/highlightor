@@ -1,4 +1,5 @@
 import '../styles/styles.scss';
+import AlertContext from '@/hooks/AlertContext';
 import Provider from '@/components/Provider';
 import Footer from '@/components/Footer';
 import Header from '../components/Header';
@@ -13,9 +14,11 @@ export default async function RootLayout({ children, modal }) {
     <html>
       <body>
         <Provider>
-          <Header />
-          {children} {modal}
-          <Footer />
+          <AlertContext>
+            <Header />
+            {children} {modal}
+            <Footer />
+          </AlertContext>
         </Provider>
       </body>
     </html>

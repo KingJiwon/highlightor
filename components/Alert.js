@@ -1,35 +1,39 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
-import alert from '../styles/components/modal/alertModal.module.scss';
+import alert from '@/styles/components/modal/alertModal.module.scss';
+import { useRouter } from 'next/navigation';
 
-export default function Alert() {
+export default function Alert({ text }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const statusCode = searchParams.get('status');
-  const message = searchParams.get('message');
-
-  const registerAlertEvent = (e) => {
-    e.preventDefault();
-    if (statusCode === '200') {
-      router.push('/login');
-    }
-    if (statusCode === '409') {
-      router.back();
-    }
+  const handleAcceptOnclik = () => {
+    router.push('/');
+  };
+  const handleCancelOnclik = () => {
+    router.back();
   };
   return (
     <div className={alert.alert_container}>
       <p className={alert.alert_logo}>HighLightor</p>
-      <p className={alert.alert_text}>{message}</p>
-      <button
-        className={alert.alert_button}
-        onClick={(e) => {
-          registerAlertEvent(e);
-        }}
-      >
-        확인
-      </button>
+      <p className={alert.alert_text}>{text}</p>
+      <div className={alert.btn_container}>
+        <button
+          type="button"
+          onClick={() => {
+            handleAcceptOnclik();
+          }}
+          className={alert.accept_button}
+        >
+          확인
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleCancelOnclik();
+          }}
+        >
+          취소
+        </button>
+      </div>
     </div>
   );
 }

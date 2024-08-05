@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { generalLogin } from '@/app/apis/user';
+
 import {
   nicknameValidation,
   emailValidation,
@@ -20,6 +21,7 @@ import {
   INVALID_NICKNAME,
   VALID_NICKNAME,
 } from '@/util/variable';
+import { useAlert } from '@/hooks/AlertContext';
 
 export default function Signup() {
   const router = useRouter();
@@ -31,7 +33,6 @@ export default function Signup() {
     password: '',
     passwordCheck: '',
   });
-
   const [validationState, setValidationState] = useState({
     isValidNickname: false,
     isValidEmail: false,
@@ -42,6 +43,8 @@ export default function Signup() {
     passwordCaption: INVALID_PASSWORD,
     passwordCheckCaption: INVALID_PASSWORDCHECK,
   });
+
+  const { setMessage } = useAlert();
 
   const validateNickname = (nickname) => {
     const isValid = nicknameValidation(nickname);
@@ -105,11 +108,8 @@ export default function Signup() {
     const res = await generalLogin(info);
 
     if (res.data?.err) return setError(res.data.err);
-    // error 없으면 모달로 push
-    return router.push(
-      `/alert/?status=${res.status}&message=${res.data}`,
-      '/alert',
-    );
+    setMessage('가입이 완료되었습니다.');
+    return router.push('/alert');
   };
 
   return (
