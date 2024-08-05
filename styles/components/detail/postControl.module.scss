@@ -1,15 +1,18 @@
 @use '../../include';
-button {
+
+.btn_modify,
+.btn_delete {
   display: flex;
   align-items: center;
   background-color: inherit;
   border: none;
   cursor: pointer;
+  margin-right: 8px;
   p {
     color: include.$main-color-black;
     font-family: include.$main-font-bold;
     font-size: 16px;
-    margin-right: 5px;
+
     cursor: pointer;
   }
 }

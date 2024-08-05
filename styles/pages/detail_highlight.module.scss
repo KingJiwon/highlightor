@@ -8,8 +8,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    a,
-    button {
+    a {
       display: flex;
       align-items: center;
       background-color: inherit;
@@ -22,10 +21,6 @@
         margin-right: 5px;
         cursor: pointer;
       }
-    }
-    .btn_modify,
-    .btn_delete {
-      margin-right: 10px;
     }
   }
   .title_container {

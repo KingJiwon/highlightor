@@ -1,7 +1,7 @@
 import { getPostData } from '@/app/apis/post';
-import DeleteBtn from '@/components/detail/DeleteBtn';
 import Info from '@/components/detail/Info';
 import PlayerBox from '@/components/detail/PlayerBox';
+import PostControlBtn from '@/components/detail/PostControlBtn';
 import SwiperHighlight from '@/components/detail/SwiperHighlight';
 
 import detail from '@/styles/pages/detail_highlight.module.scss';
@@ -20,19 +20,11 @@ export default async function page(props) {
     <>
       <div className={detail.detail_inner}>
         <div className={detail.btn_container}>
-          <Link
-            className={detail.btn_modify}
-            href={`/modify_highlight/${postId}`}
-          >
-            <Image
-              alt="수정"
-              width={15}
-              height={15}
-              src={'/icon/normal/edit.svg'}
-            />
-            <p>수정</p>
-          </Link>
-          <DeleteBtn postId={postId} publicId={postData.publicId} />
+          <PostControlBtn
+            postId={postId}
+            publicId={postData.publicId}
+            author={postData.author}
+          />
           <Link className={detail.btn_back} href={`/board_highlight/${league}`}>
             <p>목록으로</p>
             <Image
