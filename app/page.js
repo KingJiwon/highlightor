@@ -17,7 +17,6 @@ export default async function Home() {
           <CreatBtn />
         </div>
       </div>
-
       <MyHighLight />
     </div>
   );
