@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Highlightor',
   description: 'Fc온라인 하이라이트 저장소',
   icons: {
-    icon: '/images/Icon.svg',
+    icon: '/images/icon.svg',
   },
 };
 
