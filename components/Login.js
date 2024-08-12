@@ -88,9 +88,9 @@ export default function Login() {
           <Link href={'/'}>비밀번호 찾기</Link>
         </div>
         <div className={login.login_other}>
-          <div className={login.login_others}> SNS 로그인 </div>
-          <div className={login.login_others}> SNS 로그인 </div>
-          <div className={login.login_others}> SNS 로그인 </div>
+          <div className={login.login_others}> SNS 로그인(준비중..) </div>
+          <div className={login.login_others}> SNS 로그인(준비중..) </div>
+          <div className={login.login_others}> SNS 로그인(준비중..) </div>
         </div>
       </div>
     </div>
