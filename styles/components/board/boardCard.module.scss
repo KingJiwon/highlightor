@@ -57,30 +57,9 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          p:first-child {
-            width: 16px;
-            height: 16px;
-            background-size: contain;
-            background-repeat: no-repeat;
-          }
-          p:nth-child(2) {
+          p {
             font-family: include.$main-font-semiBold;
             margin-left: 3px;
-          }
-        }
-        .info_video {
-          .video_icon {
-            background-image: url('/icon/normal/video.svg');
-          }
-        }
-        .info_up {
-          .up_icon {
-            background-image: url('/icon/normal/up.svg');
-          }
-        }
-        .info_view {
-          .view_icon {
-            background-image: url('/icon/normal/eye.svg');
           }
         }
       }
