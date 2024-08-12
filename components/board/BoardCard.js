@@ -11,6 +11,8 @@ export default function BoardCard({
   league,
   videoLength,
   squad,
+  up,
+  view,
 }) {
   const router = useRouter();
   const handleClick = () => {
@@ -35,11 +37,11 @@ export default function BoardCard({
             <div className={boardCard.info}>
               <div className={boardCard.info_up}>
                 <p className={boardCard.up_icon}></p>
-                <p className={boardCard.up_count}>10</p>
+                <p className={boardCard.up_count}>{up}</p>
               </div>
               <div className={boardCard.info_view}>
                 <p className={boardCard.view_icon}></p>
-                <p className={boardCard.view_count}>39</p>
+                <p className={boardCard.view_count}>{view}</p>
               </div>
               <div className={boardCard.info_video}>
                 <p className={boardCard.video_icon}></p>

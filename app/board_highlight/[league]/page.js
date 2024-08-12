@@ -35,6 +35,8 @@ export default async function page(props) {
                 nickName={el.nickname}
                 teamName={el.teamName}
                 league={league}
+                up={el.up}
+                view={el.view}
                 videoLength={videoLength}
                 squad={el.squad}
               />
