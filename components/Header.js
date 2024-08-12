@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import header from '../styles/components/header.module.scss';
 
 export default function Header() {
   const { data: session, status } = useSession();
+
+  const router = useRouter();
+
+  const handleClickMyHighlgiht = (e) => {
+    e.preventDefault();
+    router.push('/');
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 100);
+  };
   if (status === 'loading') {
     return <></>;
   }
@@ -43,7 +54,14 @@ export default function Header() {
         <div className={header.nav_bar}>
           <ul>
             <li>
-              <Link href={'/board_highlight'}>MY 하이라이트</Link>
+              <Link
+                onClick={(e) => {
+                  handleClickMyHighlgiht(e);
+                }}
+                href={'/'}
+              >
+                MY 하이라이트
+              </Link>
             </li>
             <li>
               <Link href={'/board_highlight/pl'}>Premier League</Link>
