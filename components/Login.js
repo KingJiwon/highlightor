@@ -46,7 +46,7 @@ export default function Login() {
           </Link>
           <button
             onClick={() => {
-              router.push('/');
+              router.back();
             }}
             type="button"
             className={login.login_header_exit}
