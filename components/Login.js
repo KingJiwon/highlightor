@@ -81,7 +81,9 @@ export default function Login() {
         </form>
 
         <div className={login.login_menu}>
-          <Link href={'/signup'}>회원가입</Link>
+          <Link scroll={false} href={'/signup'}>
+            회원가입
+          </Link>
           <Link href={'/'}>ID찾기</Link>
           <Link href={'/'}>비밀번호 찾기</Link>
         </div>
