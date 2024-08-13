@@ -18,6 +18,7 @@
 ```
 
 > 배포 링크 : https://highlightor.vercel.app/
+
 > 기능 상세 내용: https://www.notion.so/Highlightor-68008e4e16d24680a5a7a8309a1ad600?pvs=4
 
 > 프로젝트 기간 : 24.07.01 ~ 24.08.01
@@ -65,7 +66,7 @@
 - next-cloudinary : 6.6.2
 - Axios : 1.7.2
 - MongoDB : 6.6.2
-- react: 18,
+- react: 18
 
 ## 🛠 기술 스택
 
@@ -81,6 +82,6 @@
 
 ![MongoDB](https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white) ![Cloundinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
 
-**design**
+**Design**
 
 ![figma](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
